@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<table xmlns="http://query.yahooapis.com/v1/schema/table.xsd">
+  <meta>
+    <author>Fabian Bergmark</author>
+    <documentationURL>http://www.smhi.se/klimatdata/Oppna-data/Meteorologiska-data/api-for-vaderprognosdata-1.34233</documentationURL>
+    <sampleQuery>select * from {table} where lat="58.59" and lon="16.18"</sampleQuery>
+  </meta>
+  <bindings>
+    <select produces="JSON">
+      <urls>
+        <url>http://opendata-download-metfcst.smhi.se/api/category/pmp1.5g/version/1/geopoint/lat/{lat}/lon/{lon}/data.json</url>
+      </urls>
+      <inputs>
+        <key id="lat" type="xs:string" paramType="path" required="true" />
+        <key id="lon" type="xs:string" paramType="path" required="true" />
+      </inputs>
+      <execute><![CDATA[
+      console.log(request.url);
+      var data = request.get().response;
+      //console.log(data);
+      response.object = data;
+      ]]>
+      </execute>
+    </select>
+  </bindings>
+</table>
