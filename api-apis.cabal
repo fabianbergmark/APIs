@@ -24,7 +24,8 @@ library
 
     hs-source-dirs: src/
 
-    exposed-modules: Data.Settings.YQL
+    exposed-modules: Control.Monad.Trans.API
+                     Data.Settings.YQL
                      Data.State.YQL
                      Data.TH.API
                      Data.TH.YQL
@@ -83,7 +84,6 @@ library
     extensions: 
                                 
     build-depends: aeson
-                 , api-pipe
                  , api-yql
                  , base
                  , bytestring
@@ -99,6 +99,7 @@ library
                  , http-types
                  , hxt
                  , json-schema          == 0.0.0
+                 , mtl
                  , opentable
                  , split
                  , strict

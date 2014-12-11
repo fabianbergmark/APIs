@@ -6,6 +6,7 @@ module TH.YQL(generateYQLs, generateYQL) where
 
 import Control.Applicative ((<$>))
 import Control.Monad.Catch (MonadThrow)
+import Control.Monad.IO.Class (MonadIO(liftIO))
 
 import Data.Aeson
 import Data.Monoid ((<>))

@@ -6,7 +6,7 @@ all: hsc swig ffi
 
 hsc:
 	cabal clean
-	cabal install -ffhsc --disable-library-for-ghci --disable-library-profiling --disable-shared
+	cabal install -fhsc --disable-library-for-ghci --disable-library-profiling --disable-shared
 	hsc2hs -C '-I.' src/FFI/*.hsc src/FFI/Data/*/*.hsc
 
 swig:

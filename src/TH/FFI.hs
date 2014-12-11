@@ -68,7 +68,7 @@ generateFFI api = do
                 input <- peek ptrInput
                 let action = pipe settings input
                 httpManager <- newManager
-                ret <- fst <$> runAPIT action (State httpManager)
+                ret <- fst <$> runAPIT (State httpManager) action
                 new ret |]
   let ffiBody = AppE ffiRun (VarE name)
 
