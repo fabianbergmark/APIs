@@ -1,6 +1,6 @@
-.PHONY: all go java python tcl
+.PHONY: all go java python tcl samples clean
 
-all: go java python tcl
+all: go java python tcl samples
 
 go:
 	mkdir -p go
@@ -9,15 +9,24 @@ go:
 
 java:
 	mkdir -p java
-	swig -c++ -java -Wall -O -o java/ffi_java.c -outdir java/ ffi.i
+	swig -c++ -java -package se.fbergmark.apis -Wall -O -o java/ffi_java.c -outdir java/ ffi.i
 	$(MAKE) -C java
 
 python:
 	mkdir -p python
-	swig -c++ -python -builtin -O -Wall -o python/ffi_python.c -outdir python/ ffi.i
+	swig -c++ -python  -Wall -o python/ffi_python.c -outdir python/ ffi.i
 	$(MAKE) -C python
 
 tcl:
 	mkdir -p tcl
 	swig -c++ -tcl -Wall -O -o tcl/ffi_tcl.c -outdir tcl/ ffi.i
 	$(MAKE) -C tcl
+
+samples:
+	$(MAKE) -C samples
+
+clean:
+	$(MAKE) -C go clean
+	$(MAKE) -C java clean
+	$(MAKE) -C python clean
+	$(MAKE) -C tcl clean

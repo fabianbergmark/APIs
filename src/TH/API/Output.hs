@@ -3,13 +3,14 @@
 
 module TH.API.Output where
 
-import Data.Aeson ((.:), (.:?), (.=), FromJSON, parseJSON, ToJSON, toJSON)
-import qualified Data.Aeson as Aeson (object, Value(..))
-import Data.Data
-import Data.Maybe
-
 import Control.Applicative ((<$>),(<*>), pure)
 import Control.Monad
+
+import Data.Aeson ((.:), (.:?), (.=), FromJSON, parseJSON, ToJSON, toJSON)
+import qualified Data.Aeson as Aeson (object, Value(..))
+import Data.Char
+import Data.Data
+import Data.Maybe
 
 import Language.Haskell.TH
 import Language.Haskell.TH.Syntax
@@ -47,15 +48,19 @@ generateDataType _ SchemaBool    = return (ConT ''Bool,   [])
 generateDataType _ SchemaNull    = return (ConT ''Void,   [])
 
 generateDataType base (SchemaArray item) = do
-  (t, ds) <- generateDataType (base ++ "b") item
+  (t, ds) <- generateDataType base item
   return $ (AppT ListT t, ds)
 
 generateDataType base (SchemaObject props@(Properties keyval) required) = do
-  let name = mkName ("Output" ++ base)
+  let name = mkName base
+      fieldBase = (toLower . head $ base):(tail base)
+
   (fields, dss) <- unzip <$> (forM keyval $ \(fname, schema) -> do
-    (t, ds) <- generateDataType (base ++ fname) schema
+    let fieldTail = ((toUpper . head $ fname):(tail fname))
+    (t, ds) <- generateDataType (base ++ fieldTail) schema
     let isRequired  = (elem fname) $ required
-        fieldName   = mkName ("resultField" ++ base ++ fname)
+
+        fieldName   = mkName (fieldBase ++ fieldTail)
         fieldType   = if isRequired
                       then t
                       else AppT (ConT ''Maybe) t

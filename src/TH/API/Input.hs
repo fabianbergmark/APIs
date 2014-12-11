@@ -6,6 +6,7 @@ module TH.API.Input
 
 import Data.Aeson ((.:), (.:?), (.=), FromJSON, parseJSON, ToJSON, toJSON)
 import qualified Data.Aeson as Aeson (object, Value(..))
+import Data.Char
 import Data.Data
 import qualified Data.Map as Map (fromList)
 import Data.Maybe (catMaybes)
@@ -30,26 +31,29 @@ import Language.JavaScript.Interpret (Primitive)
 
 generateInput :: FilePath -> OpenTable -> Q APIInput
 generateInput xml opentable = do
-  let name = camelCase . takeBaseName $ xml
+  let base = camelCase . takeBaseName $ xml
+      name = "Input" ++ base
+      tName = mkName name
       selects = [s | (SelectBinding s) <- openTableBindings opentable]
 
   cons <- forM selects $ generateConstructor name
-  let tName = mkName $ "Input" ++ name
-      dec = DataD [] tName [] cons [''Data, ''Eq, ''Read, ''Show, ''Typeable]
+  let dec = DataD [] tName [] cons [''Data, ''Eq, ''Read, ''Show, ''Typeable]
 
   ins <- generateInstances dec opentable
   return $ APIInput tName (ConT tName) (xml, opentable) (dec:ins)
 
 generateConstructor :: String -> Select -> Q Con
-generateConstructor base select = do
-  let name = "Input" ++ base
+generateConstructor name select = do
   let infos = [info | (InputKey info) <- selectInputs select]
 
   fields <- forM infos $ \info -> do
-    let fieldName     = mkName ("field" ++ name ++ (toName $ inputInfoId info))
-        fieldStrict   = NotStrict
-        fieldType     = haskellType info
-    return (fieldName, fieldStrict, fieldType)
+    let fieldBase = (toLower . head $ name):(tail name)
+        fieldHsName = toName $ inputInfoId info
+        fieldTail = (toUpper . head $ fieldHsName):(tail fieldHsName)
+        fieldName = fieldBase ++ fieldTail
+        fieldStrict = NotStrict
+        fieldType = haskellType info
+    return (mkName fieldName, fieldStrict, fieldType)
   return $ RecC (mkName name) fields
   where
     toName = map replace

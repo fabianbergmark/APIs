@@ -1,4 +1,4 @@
-*.py
+API.py
 *.pyc
-*.so
-*.c
+_API.so
+ffi_python.c

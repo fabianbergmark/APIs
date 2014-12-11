@@ -18,4 +18,5 @@ ffi:
 	cabal install -fffi --libdir=$(ROOT_DIR)/ffi/lib --disable-library-for-ghci --disable-library-vanilla --enable-shared --disable-library-profiling
 	rm a.out
 	cp ffi/lib/*/api-apis*/*.so ffi/libAPI.so
+	$(MAKE) -C ffi clean
 	$(MAKE) -C ffi

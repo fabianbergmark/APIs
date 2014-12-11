@@ -3,23 +3,17 @@
 module Data.Settings.YQL
        ( YQLSettings(..) ) where
 
-import Control.Applicative ((<$>))
-
+import Control.Applicative (pure)
 import Data.Aeson
 
 import Data.JSON.Schema
 
 data YQLSettings =
   YQLSettings
-  { yqlSettingsUrl :: String }
   deriving (Eq, Read, Show)
 
 instance FromJSON YQLSettings where
-  parseJSON (Object v) =
-    YQLSettings <$>
-    v .: "url"
-  parseJSON _ = fail "Unable to parse YQLSettings"
+  parseJSON _ = pure YQLSettings
 
 instance HasSchema YQLSettings where
-  toSchema = Const $ SchemaObject props [ "url" ]
-    where props = Properties [ ("url", SchemaString) ]
+  toSchema = Const $ SchemaObject (Properties []) []
