@@ -1,0 +1,94 @@
+{
+    "properties": {
+        "lat": {
+            "type": "number"
+        },
+        "lon": {
+            "type": "number"
+        },
+        "referenceTime": {
+            "type": "string"
+        },
+        "timeseries": {
+            "items": {
+                "properties": {
+                    "gust": {
+                        "type": "number"
+                    },
+                    "hcc": {
+                        "type": "number"
+                    },
+                    "lcc": {
+                        "type": "number"
+                    },
+                    "mcc": {
+                        "type": "number"
+                    },
+                    "msl": {
+                        "type": "number"
+                    },
+                    "pcat": {
+                        "type": "number"
+                    },
+                    "pis": {
+                        "type": "number"
+                    },
+                    "pit": {
+                        "type": "number"
+                    },
+                    "r": {
+                        "type": "number"
+                    },
+                    "t": {
+                        "type": "number"
+                    },
+                    "tcc": {
+                        "type": "number"
+                    },
+                    "tstm": {
+                        "type": "number"
+                    },
+                    "validTime": {
+                        "type": "string"
+                    },
+                    "vis": {
+                        "type": "number"
+                    },
+                    "wd": {
+                        "type": "number"
+                    },
+                    "ws": {
+                        "type": "number"
+                    }
+                },
+                "required": [
+                    "validTime",
+                    "t",
+                    "msl",
+                    "vis",
+                    "wd",
+                    "ws",
+                    "r",
+                    "tstm",
+                    "tcc",
+                    "lcc",
+                    "mcc",
+                    "hcc",
+                    "gust",
+                    "pcat",
+                    "pis",
+                    "pit"
+                ],
+                "type": "object"
+            },
+            "type": "array"
+        }
+    },
+    "required": [
+        "lat",
+        "lon",
+        "referenceTime",
+        "timeseries"
+    ],
+    "type": "object"
+}
