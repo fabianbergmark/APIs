@@ -1,0 +1,65 @@
+{
+    "properties": {
+        "Entries": {
+            "items": {
+                "properties": {
+                    "Author": {
+                        "type": "string"
+                    },
+                    "CapArea": {
+                        "items": {
+                            "properties": {
+                                "CapAreaDesc": {
+                                    "type": "string"
+                                },
+                                "Coordinate": {
+                                    "type": "string"
+                                }
+                            },
+                            "required": [
+                                "CapAreaDesc",
+                                "Coordinate"
+                            ],
+                            "type": "object"
+                        },
+                        "type": "array"
+                    },
+                    "CapEvent": {
+                        "type": "string"
+                    },
+                    "ID": {
+                        "type": "string"
+                    },
+                    "Link": {
+                        "type": "string"
+                    },
+                    "Summary": {
+                        "type": "string"
+                    },
+                    "Title": {
+                        "type": "string"
+                    },
+                    "Updated": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "ID",
+                    "Updated",
+                    "CapEvent",
+                    "Author",
+                    "Title",
+                    "Link",
+                    "Summary",
+                    "CapArea"
+                ],
+                "type": "object"
+            },
+            "type": "array"
+        }
+    },
+    "required": [
+        "Entries"
+    ],
+    "type": "object"
+}

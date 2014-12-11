@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<table xmlns="http://query.yahooapis.com/v1/schema/table.xsd">
+  <meta>
+    <author>Fabian Bergmark</author>
+    <documentationURL>http://www.krisinformation.se/web/Pages/Page____73795.aspx</documentationURL>
+    <sampleQuery>select * from {table}</sampleQuery>
+  </meta>
+  <bindings>
+    <select produces="JSON">
+      <urls>
+        <url>http://api.krisinformation.se/v1/feed?format=json</url>
+      </urls>
+      <inputs>
+      </inputs>
+    </select>
+  </bindings>
+</table>
