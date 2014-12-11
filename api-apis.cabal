@@ -86,7 +86,6 @@ library
     build-depends: aeson
                  , api-yql
                  , base
-                 , bytestring
                  , containers
                  , deepseq
                  , directory
@@ -96,16 +95,12 @@ library
                  , filepath
                  , hslogger
                  , http-conduit
-                 , http-types
                  , hxt
                  , json-schema          == 0.0.0
                  , mtl
                  , opentable
                  , split
-                 , strict
                  , template-haskell
-                 , text
                  , time
                  , transformers        
-                 , unordered-containers
                  , utf8-string
