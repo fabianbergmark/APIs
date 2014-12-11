@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<table xmlns="http://query.yahooapis.com/v1/schema/table.xsd">
+ <meta>
+  <author>
+   Fabian Bergmark
+  </author>
+  <documentationURL>
+   https://developers.facebook.com/docs/graph-api/reference/user/photos
+  </documentationURL>
+  <sampleQuery>
+   SELECT * FROM {table} WHERE user_id="me" AND access_token="CAACEdEose0cBAOxhNlFh7sCMqnIwt7ZBzhkThXAork5srPTvXJydTk35T0E3cfxRhiEbU9ijVBZB3t6yiOi25r8qXSTjWZBvUXkqQm2ajZBsNcrlFKzRjWbxVzS36oo4Y6AFljet9afF3WlkhBBplclKs2cchv0bBZAqZBTY6Q2TDkekiy2xAl0pHkIMGZBBrciHZAsXvP4hhwa4RfQ3wY8wUywHPJEwgdQZD"
+  </sampleQuery>
+ </meta>
+ <bindings>
+  <select produces="JSON">
+   <urls>
+    <url>
+     https://graph.facebook.com/{user_id}/photos
+    </url>
+   </urls>
+   <inputs>
+    <key id="user_id" paramType="path" required="true" type="xs:string"/>
+    <key id="access_token" paramType="query" required="true" type="xs:string"/>
+   </inputs>
+  </select>
+ </bindings>
+</table>

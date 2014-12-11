@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<table xmlns="http://query.yahooapis.com/v1/schema/table.xsd">
+ <meta>
+  <author>
+   Fabian Bergmark
+  </author>
+  <documentationURL>
+   https://developers.facebook.com/docs/graph-api/reference/user/friends
+  </documentationURL>
+  <sampleQuery>
+   SELECT * FROM {table} WHERE user_id="me" AND access_token="CAAFUtF57FWIBALFeQCJbyYpapvDSqmqckwVZCNoV2nX07mOFjNmnZCbKfDdChHwHh5FoTboqDtdsY3akZCxFIsdgwxC9LEZCbhCE3lcsYOVkzjpSFhpPymZAyuZBecat4OBfCyYSi69PfGZCuPepjdlB0v8yCHHs0ZCzDxSO7WWZAf5cA0QvqAI9R"
+  </sampleQuery>
+ </meta>
+ <bindings>
+  <select produces="JSON">
+   <urls>
+    <url>
+     https://graph.facebook.com/{user_id}/friends
+    </url>
+   </urls>
+   <inputs>
+    <key id="user_id" paramType="path" required="true" type="xs:string"/>
+    <key id="access_token" paramType="query" required="true" type="xs:string"/>
+   </inputs>
+  </select>
+ </bindings>
+</table>

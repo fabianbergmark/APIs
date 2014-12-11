@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<table xmlns="http://query.yahooapis.com/v1/schema/table.xsd">
+ <meta>
+  <author>
+   Fabian Bergmark
+  </author>
+  <documentationURL>
+   https://developers.facebook.com/docs/graph-api/reference/user/statuses
+  </documentationURL>
+  <sampleQuery>
+   SELECT * FROM {table} WHERE user_id="me" AND access_token="CAAFUtF57FWIBAFtHwEjXn7HH5P9vcoD3WsAZAUFRXNfbW1FTFONjmuyZA3f3m5qFPp3IVZBRifZB6gsv6ttd3bhr1LS6Ea81TUYmlYyln5bDV7nxIwBb965OYdyf0IzVwbUJQwfTpdHRytalj8SU99d3WAzu1qbnwZBn6T154wC0n5eqAZCEhl"
+  </sampleQuery>
+ </meta>
+ <bindings>
+  <select produces="JSON">
+   <urls>
+    <url>
+     https://graph.facebook.com/{user_id}/statuses
+    </url>
+   </urls>
+   <inputs>
+    <key id="user_id" paramType="path" required="true" type="xs:string"/>
+    <key id="access_token" paramType="query" required="true" type="xs:string"/>
+   </inputs>
+  </select>
+ </bindings>
+</table>

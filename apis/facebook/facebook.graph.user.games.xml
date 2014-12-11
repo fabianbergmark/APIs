@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<table xmlns="http://query.yahooapis.com/v1/schema/table.xsd">
+ <meta>
+  <author>
+   Fabian Bergmark
+  </author>
+  <documentationURL>
+   https://developers.facebook.com/docs/graph-api/reference/user/games
+  </documentationURL>
+  <sampleQuery>
+   SELECT * FROM {table} WHERE user_id="me" AND access_token="CAAFUtF57FWIBABsDzU4Te7HDwHZBxZCB2gKYlVZAfg3qFaYxqHCq7E2YygHDOqZC3wrYDciK0tdDI1kgECAlblWFHZBjbG3qaNWj8MZAXPfnkInwvIPMmikuOOJrXoClqqcWDZAL7WWpoShEGc0JChHXao2FBsGmhsmOnycnNBomZAm3Hnzq8X1qXpR6A6ll3loWp51YXJ3VvAZDZD"
+  </sampleQuery>
+ </meta>
+ <bindings>
+  <select produces="JSON">
+   <urls>
+    <url>
+     https://graph.facebook.com/{user_id}/games
+    </url>
+   </urls>
+   <inputs>
+    <key id="user_id" paramType="path" required="true" type="xs:string"/>
+    <key id="access_token" paramType="query" required="true" type="xs:string"/>
+   </inputs>
+  </select>
+ </bindings>
+</table>
