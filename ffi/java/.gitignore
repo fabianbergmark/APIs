@@ -1,4 +1,5 @@
-*.java
-*.c
-*.class
-*.jar
+/*.java
+/ffi_java.cpp
+/*.class
+/*.jar
+/se

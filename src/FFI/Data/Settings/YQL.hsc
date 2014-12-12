@@ -9,7 +9,7 @@ import FFI.Array()
 
 #let alignment t = "%lu", (unsigned long)offsetof(struct {char x__; t (y__); }, y__)
 
-#include "/home/fabian/src/API/API-APIs/ffi/c/lib/yql.h"
+#include "ffi/c/lib/yql.h"
 
 instance Storable YQLSettings where
   alignment _ = #{alignment YQLSettings}

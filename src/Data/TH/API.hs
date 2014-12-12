@@ -2,7 +2,7 @@ module Data.TH.API (API(..), APIInput(..), APIOutput(..)) where
 
 import Language.Haskell.TH
 
-import Data.OpenTable
+import Data.OpenDataTable
 import Data.JSON.Schema
 
 data API =
@@ -15,7 +15,7 @@ data APIInput =
   APIInput
   { apiInputName         :: Name
   , apiInputType         :: Type
-  , apiInputOpenTable    :: (FilePath, OpenTable)
+  , apiInputOpenDataTable    :: (FilePath, OpenDataTable)
   , apiInputDeclarations :: [Dec] }
 
 

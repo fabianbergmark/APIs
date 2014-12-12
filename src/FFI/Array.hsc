@@ -5,7 +5,7 @@ import Foreign
 
 #let alignment t = "%lu", (unsigned long)offsetof(struct {char x__; t (y__); }, y__)
 
-#include "/home/fabian/src/API/API-APIs/ffi/c/lib/array.h"
+#include "ffi/c/lib/array.h"
 
 instance Storable a => Storable [a] where
   alignment _ = #{alignment Array}

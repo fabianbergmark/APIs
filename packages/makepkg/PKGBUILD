@@ -1,0 +1,47 @@
+# This is an example PKGBUILD file. Use this as a start to creating your own,
+# and remove these comments. For more information, see 'man PKGBUILD'.
+# NOTE: Please fill out the license field for your package! If it is unknown,
+# then please put 'unknown'.
+
+# Maintainer: Your Name <youremail@domain.com>
+pkgname=APIs
+pkgver=0.0.0
+pkgrel=1
+epoch=0
+pkgdesc="A library for generating type safe web REST API calls in several languages"
+arch=(any)
+url="https://github.com/fabianbergmark/APIs"
+license=('BSD2')
+groups=()
+depends=('ghc>=7.8.3')
+makedepends=('python' 'python2' 'swig' 'tcl')
+checkdepends=()
+optdepends=()
+provides=()
+conflicts=()
+replaces=()
+backup=()
+options=()
+install=
+changelog=
+source=($pkgname.tar.gz)
+md5sums=('c3fb16b7d874d35a1b7aa9a90b2fd8cb')
+noextract=()
+
+build() {
+  ./configure --prefix=/usr
+  make preprocessor
+  make
+  make ffi
+}
+
+check() {
+  make -k check
+}
+
+package() {
+  make DESTDIR="$pkgdir/" install
+  make DESTDIR="$pkgdir/" ffi-install
+  mkdir -p "$pkgdir/usr/share/licenses"
+  cp LICENSE "$pkgdir/usr/share/licenses/$pkgname-$pkgver"
+}

@@ -8,6 +8,7 @@ module TH.FFI
 
 import Control.Applicative ((<$>))
 
+import Data.Char
 import Data.Monoid ((<>))
 
 import Foreign.Marshal.Utils
@@ -18,8 +19,6 @@ import Language.Haskell.TH (Body(..), Callconv(..), Dec(..), Exp(..),
                             Foreign(..), Pat(..), Q, Type(..),
                             mkName, runIO)
 import Language.Haskell.TH.Syntax (Name(..), OccName(..))
-
-import Network.HTTP.Client.Conduit (newManager, Manager)
 
 import Control.Monad.Trans.API (runAPIT)
 
@@ -36,10 +35,8 @@ import Helper.Name
 
 data State
   = State
-    { stateHttpManager :: Manager }
 
 instance YQLState State where
-  yqlStateGetHttpManager = stateHttpManager
 
 generateFFIs :: [API] -> Q [FFI]
 generateFFIs apis = do
@@ -55,20 +52,20 @@ generateFFIs apis = do
 generateFFI :: API -> Q FFI
 generateFFI api = do
 
-  let base    = "yql" <> (snakeCase . apiName $ api)
-      inType  = apiInputType  . apiInput  $ api
+  let cc = camelCase . apiName $ api
+      base = (toLower . head $ cc):(tail cc)
+      inType = apiInputType  . apiInput  $ api
       outType = apiOutputType . apiOutput $ api
 
-  let name = mkName $ base <> "Pipe"
-      ffiName = mkName $ base <> "Pipe_ffi"
+  let name = mkName $ base
+      ffiName = mkName $ base <> "_ffi"
       ffiT = AppT (AppT ArrowT (AppT (ConT ''Ptr) (ConT ''YQLSettings))) (AppT (AppT ArrowT (AppT (ConT ''Ptr) inType)) (AppT (ConT ''IO) (AppT (ConT ''Ptr) (AppT (ConT ''Maybe) outType))))
       ffiSig = SigD ffiName ffiT
   ffiRun <- [| \pipe ptrSettings ptrInput -> do
                 settings <- peek ptrSettings
                 input <- peek ptrInput
                 let action = pipe settings input
-                httpManager <- newManager
-                ret <- fst <$> runAPIT (State httpManager) action
+                ret <- fst <$> runAPIT State action
                 new ret |]
   let ffiBody = AppE ffiRun (VarE name)
 
@@ -96,12 +93,13 @@ writeHeaderFile funs = do
 
 generateFFIWrapper :: API -> Q String
 generateFFIWrapper api = do
-  let base    = "yql" <> (snakeCase . apiName $ api)
+  let cc = camelCase . apiName $ api
+      base = (toLower . head $ cc):(tail cc)
       (ConT (Name (OccName inName) _))  = apiInputType  . apiInput  $ api
       (ConT (Name (OccName outName) _)) = apiOutputType . apiOutput $ api
 
-  let name = base <> "Pipe"
-      ffiName = base <> "Pipe_ffi"
+  let name = base
+      ffiName = base <> "_ffi"
 
   return $
     "Maybe * " ++ name ++ "(YQLSettings *settings, " ++ inName ++ " *input) " ++
@@ -126,12 +124,13 @@ writeCppHeaderFile funs = do
 
 generateFFICppWrapper :: API -> Q String
 generateFFICppWrapper api = do
-  let base    = "yql" <> (snakeCase . apiName $ api)
+  let cc = camelCase . apiName $ api
+      base = (toLower . head $ cc):(tail cc)
       (ConT (Name (OccName inName) _))  = apiInputType  . apiInput  $ api
       (ConT (Name (OccName outName) _)) = apiOutputType . apiOutput $ api
 
-  let name = base <> "Pipe"
-      ffiName = base <> "Pipe_ffi"
+  let name = base
+      ffiName = base <> "_ffi"
 
   return $
     "Maybe<" ++ outName ++ "> * " ++ name ++ "(YQLSettings *settings, " ++ inName ++ " *input) " ++

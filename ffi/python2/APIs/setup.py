@@ -8,6 +8,6 @@ setup(name='APIs',
       author_email='fabian.bergmark@gmail.com',
       license='BSD2',
       packages=['APIs'],
-      package_data={'': ['LICENCE'], 'APIs': ['_API.so']},
+      package_data={'': ['LICENCE'], 'APIs': ['_APIs.so']},
       include_package_data=True,
       zip_safe=False)

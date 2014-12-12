@@ -9,6 +9,7 @@ import Control.Monad.Catch (MonadThrow)
 import Control.Monad.IO.Class (MonadIO(liftIO))
 
 import Data.Aeson
+import Data.Char
 import Data.Monoid ((<>))
 
 import Language.Haskell.TH (Body(..), Dec(..),  Pat(..),
@@ -37,7 +38,8 @@ generateYQLs apis = do
 generateYQL :: API -> Q YQL
 generateYQL api = do
 
-  let name    = "yql" <> (snakeCase . apiName $ api)
+  let cc = camelCase . apiName $ api
+      name    = (toLower . head $ cc):(tail cc)
       inType  = apiInputType  . apiInput  $ api
       outType = apiOutputType . apiOutput $ api
 
@@ -47,8 +49,8 @@ generateYQL api = do
 
 generateYQLPipe :: String -> API -> Q YQLPipe
 generateYQLPipe base API {..} = do
-  let name = mkName $ base <> "Pipe"
-      opentable = snd $ apiInputOpenTable apiInput
+  let name = mkName base
+      opentable = snd $ apiInputOpenDataTable apiInput
       inType  = apiInputType  $ apiInput
       outType = apiOutputType $ apiOutput
 

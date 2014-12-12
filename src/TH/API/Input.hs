@@ -21,7 +21,7 @@ import System.FilePath (takeBaseName)
 
 import Helper.Name
 
-import Data.OpenTable
+import Data.OpenDataTable
 
 import Data.TH.API
 import Data.TH.Convert
@@ -29,12 +29,12 @@ import Data.TH.Object
 
 import Language.JavaScript.Interpret (Primitive)
 
-generateInput :: FilePath -> OpenTable -> Q APIInput
+generateInput :: FilePath -> OpenDataTable -> Q APIInput
 generateInput xml opentable = do
   let base = camelCase . takeBaseName $ xml
       name = "Input" ++ base
       tName = mkName name
-      selects = [s | (SelectBinding s) <- openTableBindings opentable]
+      selects = [s | (SelectBinding s) <- openDataTableBindings opentable]
 
   cons <- forM selects $ generateConstructor name
   let dec = DataD [] tName [] cons [''Data, ''Eq, ''Read, ''Show, ''Typeable]
@@ -60,14 +60,14 @@ generateConstructor name select = do
     replace '-' = '_'
     replace a = a
 
-generateInstances :: Dec -> OpenTable -> Q [Dec]
+generateInstances :: Dec -> OpenDataTable -> Q [Dec]
 generateInstances dec opentable = do
   toJSONI <- generateToJSONInstance dec opentable
   fromJSONI <- generateFromJSONInstance dec opentable
   objectI <- generateObjectInstance dec opentable
   return [toJSONI, fromJSONI, objectI]
 
-generateFromJSONInstance :: Dec -> OpenTable -> Q Dec
+generateFromJSONInstance :: Dec -> OpenDataTable -> Q Dec
 generateFromJSONInstance dec opentable = do
   let DataD _ name _ _ _ = dec
       insName = ''FromJSON
@@ -80,11 +80,11 @@ generateFromJSONInstance dec opentable = do
 
   return $ InstanceD ctx decType decs
 
-generateParseJSONFunction :: Dec -> OpenTable -> Q Dec
+generateParseJSONFunction :: Dec -> OpenDataTable -> Q Dec
 generateParseJSONFunction dec opentable = do
   let DataD _ _ _ cons _ = dec
 
-  let selects = [s | (SelectBinding s) <- openTableBindings opentable]
+  let selects = [s | (SelectBinding s) <- openDataTableBindings opentable]
 
   let v = mkName "v"
 
@@ -116,7 +116,7 @@ generateParseJSONAlternative v (RecC name _) select = do
   return body
 generateParseJSONAlternative _ _ _ = error "Invalid constructor"
 
-generateToJSONInstance :: Dec -> OpenTable -> Q Dec
+generateToJSONInstance :: Dec -> OpenDataTable -> Q Dec
 generateToJSONInstance dec opentable = do
   let DataD _ name _ _ _ = dec
       insName = ''ToJSON
@@ -129,11 +129,11 @@ generateToJSONInstance dec opentable = do
 
   return $ InstanceD ctx decType decs
 
-generateToJSONFunction :: Dec -> OpenTable -> Q Dec
+generateToJSONFunction :: Dec -> OpenDataTable -> Q Dec
 generateToJSONFunction dec opentable = do
   let DataD _ _ _ cons _ = dec
 
-  let selects = [s | (SelectBinding s) <- openTableBindings opentable]
+  let selects = [s | (SelectBinding s) <- openDataTableBindings opentable]
 
   clauses <- mapM (uncurry generateToJSONClause) $ zip cons selects
 
@@ -174,7 +174,7 @@ generateToJSONClause con select = do
                        (VarE 'catMaybes)
                        $ ListE list)) []
 
-generateObjectInstance :: Dec -> OpenTable -> Q Dec
+generateObjectInstance :: Dec -> OpenDataTable -> Q Dec
 generateObjectInstance dec opentable = do
   let DataD _ name _ _ _ = dec
       insName = ''Object
@@ -187,11 +187,11 @@ generateObjectInstance dec opentable = do
 
   return $ InstanceD ctx decType decs
 
-generateToObjectFunction :: Dec -> OpenTable -> Q Dec
+generateToObjectFunction :: Dec -> OpenDataTable -> Q Dec
 generateToObjectFunction dec opentable = do
   let DataD _ _ _ cons _ = dec
 
-  let selects = [s | (SelectBinding s) <- openTableBindings opentable]
+  let selects = [s | (SelectBinding s) <- openDataTableBindings opentable]
 
   clauses <- mapM (uncurry generateToObjectClause) $ zip cons selects
 

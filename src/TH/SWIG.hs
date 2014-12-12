@@ -34,7 +34,7 @@ writeInstanceFile :: [String] -> [String] -> IO ()
 writeInstanceFile arrayFuns templateExpansions = do
   let include = "%include carrays.i\n" ++
                 "%include cpointer.i\n" ++
-                "%module API\n" ++
+                "%module APIs\n" ++
                 "%{\n" ++
                 "#include <api.hpp>\n" ++
                 "%}\n" ++

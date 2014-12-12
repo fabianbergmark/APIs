@@ -1,2 +1,2 @@
-*.go
-*.c
+/*.go
+/ffi_go.cpp

@@ -19,9 +19,9 @@ import System.FilePath.Find
 
 import Text.XML.HXT.Core (runX, readString, withRemoveWS, yes, (>>>))
 
-import Data.OpenTable
+import Data.OpenDataTable
 import Data.JSON.Schema
-import Parser.OpenTable
+import Data.OpenDataTable.Parser
 
 findAPIs :: FilePath -> IO [(FilePath, FilePath)]
 findAPIs folder = do
@@ -34,7 +34,7 @@ findAPIs folder = do
       then return $ Just (xml, json)
       else return Nothing)
 
-loadAPI :: (FilePath, FilePath) -> IO (Maybe (OpenTable, Schema))
+loadAPI :: (FilePath, FilePath) -> IO (Maybe (OpenDataTable, Schema))
 loadAPI (xml, json) = do
 
   jsonFile <- openFile json ReadMode
@@ -45,10 +45,10 @@ loadAPI (xml, json) = do
   document <- hGetContents xmlFile
   rnf document `seq` hClose xmlFile
 
-  mOpenTable <- listToMaybe <$> runX (readString [withRemoveWS yes] document
-                                      >>> parseOpenTable)
+  mOpenDataTable <- listToMaybe <$> runX (readString [withRemoveWS yes] document
+                                      >>> parseOpenDataTable)
 
   return $ do
-    !o <- mOpenTable
+    !o <- mOpenDataTable
     s <- Aeson.decode . BSL.fromString $ schema
     return (o, s)

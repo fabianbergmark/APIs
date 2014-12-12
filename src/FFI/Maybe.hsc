@@ -7,7 +7,7 @@ import Foreign.C.Types
 
 #let alignment t = "%lu", (unsigned long)offsetof(struct {char x__; t (y__); }, y__)
 
-#include "/home/fabian/src/API/API-APIs/ffi/c/lib/maybe.h"
+#include "ffi/c/lib/maybe.h"
 
 instance Storable a => Storable (Maybe a) where
   alignment _ = #{alignment Maybe}
