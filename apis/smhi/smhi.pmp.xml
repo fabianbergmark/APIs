@@ -2,7 +2,9 @@
 <table xmlns="http://query.yahooapis.com/v1/schema/table.xsd">
   <meta>
     <author>Fabian Bergmark</author>
-    <documentationURL>http://www.smhi.se/klimatdata/Oppna-data/Meteorologiska-data/api-for-vaderprognosdata-1.34233</documentationURL>
+    <documentationURL>
+      http://www.smhi.se/klimatdata/Oppna-data/Meteorologiska-data/api-for-vaderprognosdata-1.34233
+    </documentationURL>
     <sampleQuery>select * from {table} where lat="58.59" and lon="16.18"</sampleQuery>
   </meta>
   <bindings>

@@ -1,0 +1,220 @@
+{
+  "type": "object",
+  "properties": {
+    "data": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "backdated_time": {
+            "type": "string"
+          },
+          "backdated_time_granularity": {
+            "type": "string"
+          },
+          "created_time": {
+            "type": "string"
+          },
+          "from": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "id",
+              "name"
+            ]
+          },
+          "height": {
+            "type": "number"
+          },
+          "icon": {
+            "type": "string"
+          },
+          "images": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "height": {
+                  "type": "number"
+                },
+                "source": {
+                  "type": "string"
+                },
+                "width": {
+                  "type": "number"
+                }
+              },
+              "required": [
+                "height",
+                "source",
+                "width"
+              ]
+            }
+          },
+          "link": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "picture": {
+            "type": "string"
+          },
+          "place": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              },
+              "location": {
+                "type": "object",
+                "properties": {
+                  "latitude": {
+                    "type": "number"
+                  },
+                  "longitude": {
+                    "type": "number"
+                  }
+                },
+                "required": [
+                  "latitude",
+                  "longitude"
+                ]
+              }
+            },
+            "required": [
+              "id",
+              "name",
+              "location"
+            ]
+          },
+          "source": {
+            "type": "string"
+          },
+          "updated_time": {
+            "type": "string"
+          },
+          "width": {
+            "type": "number"
+          },
+          "tags": {
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "created_time": {
+                      "type": "string"
+                    },
+                    "x": {
+                      "type": "number"
+                    },
+                    "y": {
+                      "type": "number"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "name",
+                    "created_time",
+                    "x",
+                    "y"
+                  ]
+                }
+              },
+              "paging": {
+                "type": "object",
+                "properties": {
+                  "cursors": {
+                    "type": "object",
+                    "properties": {
+                      "before": {
+                        "type": "string"
+                      },
+                      "after": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "before",
+                      "after"
+                    ]
+                  }
+                },
+                "required": [
+                  "cursors"
+                ]
+              }
+            },
+            "required": [
+              "data",
+              "paging"
+            ]
+          }
+        },
+        "required": [
+          "id",
+          "created_time",
+          "from",
+          "height",
+          "icon",
+          "images",
+          "link",
+          "picture",
+          "source",
+          "updated_time",
+          "width",
+          "tags"
+        ]
+      }
+    },
+    "paging": {
+      "type": "object",
+      "properties": {
+        "cursors": {
+          "type": "object",
+          "properties": {
+            "before": {
+              "type": "string"
+            },
+            "after": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "before",
+            "after"
+          ]
+        }
+      },
+      "required": [
+        "cursors"
+      ]
+    }
+  },
+  "required": [
+    "data",
+    "paging"
+  ]
+}

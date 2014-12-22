@@ -1,5 +1,6 @@
 module Control.Monad.Trans.API
-       ( APIT
+       ( module Control.Monad.State.Strict
+       , APIT
        , runAPIT ) where
 
 import Control.Monad.State.Strict

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<table xmlns="http://query.yahooapis.com/v1/schema/table.xsd">
+  <meta>
+    <author>
+      Fabian Bergmark
+    </author>
+    <documentationURL>
+      https://www.dropbox.com/developers/core/docs
+    </documentationURL>
+  </meta>
+  <bindings>
+    <select produces="JSON">
+      <urls>
+        <url>
+          https://api.dropbox.com/1/delta
+        </url>
+      </urls>
+      <inputs>
+        <key id="cursor" paramType="query" required="false" type="xs:string"/>
+        <key id="locale" paramType="query" required="false" type="xs:string"/>
+        <key id="path_prefix" paramType="query" required="false" type="xs:string"/>
+        <key id="include_media_info" paramType="query" required="false" type="xs:boolean"/>
+        <key id="access_token" paramType="variable" required="true" type="xs:string"/>
+      </inputs>
+      <execute><![CDATA[
+      try {
+      response.object =
+      y.rest(request.url)
+      .header('Authorization', 'Bearer ' + access_token)
+      .post().response;
+      } catch(err) {
+      response.object = { 'result':'failure', 'error': err };
+      }
+      ]]>
+      </execute>
+    </select>
+  </bindings>
+</table>

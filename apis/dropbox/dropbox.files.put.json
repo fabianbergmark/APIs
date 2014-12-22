@@ -1,0 +1,55 @@
+{
+  "type": "object",
+  "properties": {
+    "revision": {
+      "type": "number"
+    },
+    "bytes": {
+      "type": "number"
+    },
+    "thumb_exists": {
+      "type": "boolean"
+    },
+    "rev": {
+      "type": "string"
+    },
+    "modified": {
+      "type": "string"
+    },
+    "mime_type": {
+      "type": "string"
+    },
+    "path": {
+      "type": "string"
+    },
+    "is_dir": {
+      "type": "boolean"
+    },
+    "size": {
+      "type": "string"
+    },
+    "root": {
+      "type": "string"
+    },
+    "client_mtime": {
+      "type": "string"
+    },
+    "icon": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "revision",
+    "bytes",
+    "thumb_exists",
+    "rev",
+    "modified",
+    "mime_type",
+    "path",
+    "is_dir",
+    "size",
+    "root",
+    "client_mtime",
+    "icon"
+  ]
+}

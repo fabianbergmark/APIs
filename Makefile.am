@@ -65,8 +65,9 @@ libAPIsTcl_la_LDFLAGS = -Wl,-rpath,'$(libdir)',-rpath,'$(HSLIBDIR)/rts-1.0'
 .PHONY: preprocessor preprocessor-clean ffi ffi-install ffi-uninstalls ffi-clean packages packages-clean makepkg makepkg-clean all-clean
 
 preprocessor:
-	ghc -fforce-recomp -isrc -hidir build -odir build -stubdir ffi/c/lib src/TH/HSCs.hs src/TH/SWIGs.hs src/TH/FFIs.hs src/TH/APIs.hs
+	ghc -fforce-recomp -isrc -hidir build -odir build -stubdir ffi/c/lib src/TH/HSCs.hs src/TH/SWIGs.hs
 	hsc2hs -C '-I.' src/FFI/*.hsc src/FFI/Data/*/*.hsc
+	ghc -fforce-recomp -isrc -hidir build -odir build -stubdir ffi/c/lib src/TH/FFIs.hs
 	$(MAKE) -C ffi swig
 
 preprocessor-clean:
@@ -79,6 +80,11 @@ preprocessor-clean:
 	rm -rf ffi/c/lib/TH/
 	rm -f ffi/cpp/lib/api.hpp
 	rm -f ffi/cpp/lib/types.hpp
+	rm -f src/FFI/*.lo
+	rm -f src/FFI/*.hs
+	rm -f src/FFI/Data/*/*.hs
+	rm -f src/FFI/Data/*/*.lo
+	rm -f src/FFI/Types.hsc
 
 ffi:
 	$(MAKE) -C ffi

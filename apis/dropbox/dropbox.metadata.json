@@ -1,0 +1,108 @@
+{
+  "type": "object",
+  "properties": {
+    "size": {
+      "type": "string"
+    },
+    "bytes": {
+      "type": "number"
+    },
+    "path": {
+      "type": "string"
+    },
+    "is_dir": {
+      "type": "boolean"
+    },
+    "is_deleted": {
+      "type": "boolean"
+    },
+    "rev": {
+      "type": "string"
+    },
+    "hash": {
+      "type": "string"
+    },
+    "thumb_exists": {
+      "type": "boolean"
+    },
+    "icon": {
+      "type": "string"
+    },
+    "modified": {
+      "type": "string"
+    },
+    "client_mtime": {
+      "type": "string"
+    },
+    "root": {
+      "type": "string"
+    },
+    "contents": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "rev": {
+            "type": "string"
+          },
+          "thumb_exists": {
+            "type": "boolean"
+          },
+          "path": {
+            "type": "string"
+          },
+          "is_dir": {
+            "type": "boolean"
+          },
+          "client_mtime": {
+            "type": "string"
+          },
+          "icon": {
+            "type": "string"
+          },
+          "bytes": {
+            "type": "number"
+          },
+          "modified": {
+            "type": "string"
+          },
+          "size": {
+            "type": "string"
+          },
+          "root": {
+            "type": "string"
+          },
+          "mime_type": {
+            "type": "string"
+          },
+          "revision": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "rev",
+          "thumb_exists",
+          "path",
+          "is_dir",
+          "icon",
+          "bytes",
+          "modified",
+          "size",
+          "root",
+          "revision"
+        ]
+      }
+    }
+  },
+  "required": [
+    "hash",
+    "thumb_exists",
+    "bytes",
+    "path",
+    "is_dir",
+    "icon",
+    "root",
+    "contents",
+    "size"
+  ]
+}

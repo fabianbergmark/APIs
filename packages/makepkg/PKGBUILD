@@ -5,7 +5,7 @@
 
 # Maintainer: Your Name <youremail@domain.com>
 pkgname=APIs
-pkgver=0.0.0
+pkgver=0.0.1
 pkgrel=1
 epoch=0
 pkgdesc="A library for generating type safe web REST API calls in several languages"

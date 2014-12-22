@@ -1,0 +1,113 @@
+{
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "comments": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "from": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "id",
+                  "name"
+                ]
+              },
+              "message": {
+                "type": "string"
+              },
+              "created_time": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "id",
+              "from",
+              "message",
+              "created_time"
+            ]
+          }
+        },
+        "paging": {
+          "type": "object",
+          "properties": {
+            "previous": {
+              "type": "string"
+            },
+            "next": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "previous",
+            "next"
+          ]
+        }
+      },
+      "required": [
+        "data",
+        "paging"
+      ]
+    },
+    "to": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "id",
+              "name"
+            ]
+          }
+        }
+      },
+      "required": [
+        "data"
+      ]
+    },
+    "unread": {
+      "type": "number"
+    },
+    "unseen": {
+      "type": "number"
+    },
+    "updated_time": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "id",
+    "to",
+    "updated_time",
+    "unread",
+    "unseen",
+    "comments"
+  ]
+}

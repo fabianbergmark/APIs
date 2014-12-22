@@ -1,5 +1,5 @@
 name:              apis
-version:           0.0.0
+version:           0.0.1
 synopsis:          A Template Haskell library for generating type safe API calls
 description:       A library that uses Open Data Tables and JSON Schemas to
                    generate Haskell types and API calls.
@@ -16,6 +16,36 @@ extra-source-files: apis/krisinformation/krisinformation.feed.json
                     apis/krisinformation/krisinformation.feed.xml
                     apis/smhi/smhi.pmp.json
                     apis/smhi/smhi.pmp.xml
+                    apis/dropbox/dropbox.files.json
+                    apis/dropbox/dropbox.files.xml
+                    apis/dropbox/dropbox.files.put.json
+                    apis/dropbox/dropbox.files.put.xml
+                    apis/dropbox/dropbox.metadata.json
+                    apis/dropbox/dropbox.metadata.xml
+                    apis/facebook/facebook.graph.user.feed.json
+                    apis/facebook/facebook.graph.user.feed.xml
+                    apis/facebook/facebook.graph.user.feed.post.json
+                    apis/facebook/facebook.graph.user.feed.post.xml
+                    apis/facebook/facebook.graph.user.friendlists.json
+                    apis/facebook/facebook.graph.user.friendlists.xml
+                    apis/facebook/facebook.graph.user.friends.json
+                    apis/facebook/facebook.graph.user.friends.xml
+                    apis/facebook/facebook.graph.user.inbox.json
+                    apis/facebook/facebook.graph.user.inbox.xml
+                    apis/facebook/facebook.graph.user.links.json
+                    apis/facebook/facebook.graph.user.links.xml
+                    apis/facebook/facebook.graph.user.photos.json
+                    apis/facebook/facebook.graph.user.photos.xml
+                    apis/facebook/facebook.graph.user.photosuploaded.json
+                    apis/facebook/facebook.graph.user.photosuploaded.xml
+                    apis/facebook/facebook.graph.user.pokes.json
+                    apis/facebook/facebook.graph.user.pokes.xml
+                    apis/facebook/facebook.graph.user.posts.json
+                    apis/facebook/facebook.graph.user.posts.xml
+                    apis/facebook/facebook.graph.user.statuses.json
+                    apis/facebook/facebook.graph.user.statuses.xml
+                    apis/facebook/facebook.graph.user.tagged.json
+                    apis/facebook/facebook.graph.user.tagged.xml
                     LICENSE
 
 source-repository head
@@ -28,6 +58,8 @@ library
     hs-source-dirs: src/
 
     exposed-modules: Control.Monad.Trans.API
+                     Data.JSON.Void
+                     Data.JSON.Schema
                      Data.Settings.YQL
                      Data.State.YQL
                      TH.API
@@ -37,9 +69,7 @@ library
                      TH.YQL
                      TH.YQLs
 
-    other-modules: Data.JSON.Void
-                   Data.JSON.Schema
-                   Data.TH.API
+    other-modules: Data.TH.API
                    Data.TH.Convert
                    Data.TH.FFI
                    Data.TH.Object

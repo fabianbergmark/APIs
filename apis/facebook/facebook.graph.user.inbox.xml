@@ -1,27 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <table xmlns="http://query.yahooapis.com/v1/schema/table.xsd">
- <meta>
-  <author>
-   Fabian Bergmark
-  </author>
-  <documentationURL>
-   https://developers.facebook.com/docs/graph-api/reference/user/inbox
-  </documentationURL>
-  <sampleQuery>
-   SELECT * FROM {table} WHERE user_id="me" AND access_token="CAACEdEose0cBAIq6zD775vpk3EgpAVLV26QyPloHh0OxyYC54p4ePc36nuYQekRMUdOoZCh1i6y17B49qzvZAMzK2Ax1p6SqZBaOiTlcrQxPWYH78xcJZAjvog3tUStKKbW3e5wIb0mJhis1Ew27b1SpecmUs6sZA15ZBvyqbnZA20EWsgzDDgrYnVbwofXUOEZA2VW3SGvDUDxAoeEy38FTmCtedanr9hcZD"
-  </sampleQuery>
- </meta>
- <bindings>
-  <select produces="JSON">
-   <urls>
-    <url>
-     https://graph.facebook.com/{user_id}/inbox
-    </url>
-   </urls>
-   <inputs>
-    <key id="user_id" paramType="path" required="true" type="xs:string"/>
-    <key id="access_token" paramType="query" required="true" type="xs:string"/>
-   </inputs>
-  </select>
- </bindings>
+  <meta>
+    <author>
+      Fabian Bergmark
+    </author>
+    <documentationURL>
+      https://developers.facebook.com/docs/graph-api/reference/v2.2/user/inbox
+    </documentationURL>
+  </meta>
+  <bindings>
+    <select produces="JSON">
+      <urls>
+        <url>
+          https://graph.facebook.com/v2.2/{user_id}/inbox
+        </url>
+      </urls>
+      <inputs>
+        <key id="user_id" paramType="path" required="true" type="xs:string"/>
+        <key id="access_token" paramType="query" required="true" type="xs:string"/>
+      </inputs>
+    </select>
+  </bindings>
 </table>

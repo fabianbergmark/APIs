@@ -1,0 +1,38 @@
+{
+  "type": "object",
+  "properties": {
+    "data": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "name",
+          "id"
+        ]
+      }
+    },
+    "paging": {
+      "type": "object",
+      "properties": {
+        "next": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "next"
+      ]
+    }
+  },
+  "required": [
+    "data",
+    "paging"
+  ]
+}

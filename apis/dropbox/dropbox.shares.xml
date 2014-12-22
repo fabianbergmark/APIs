@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<table xmlns="http://query.yahooapis.com/v1/schema/table.xsd">
+  <meta>
+    <author>
+      Fabian Bergmark
+    </author>
+    <documentationURL>
+      https://www.dropbox.com/developers/core/docs
+    </documentationURL>
+  </meta>
+  <bindings>
+    <select produces="JSON">
+      <urls>
+        <url>
+          https://api.dropbox.com/1/shares/{root}/{path}
+        </url>
+      </urls>
+      <inputs>
+        <key id="root" paramType="path" required="true" default="auto" type="xs:string"/>
+        <key id="path" paramType="path" required="true" type="xs:string"/>
+        <key id="locale" paramType="query" required="false" type="xs:string"/>
+        <key id="short_url" paramType="query" required="false" type="xs:boolean"/>
+        <key id="access_token" paramType="variable" required="true" type="xs:string"/>
+      </inputs>
+      <execute><![CDATA[
+      try {
+      response.object =
+      y.rest(request.url)
+      .header('Authorization', 'Bearer ' + access_token)
+      .post().response;
+      } catch(err) {
+      response.object = { 'result':'failure', 'error': err };
+      }
+      ]]>
+      </execute>
+    </select>
+  </bindings>
+</table>

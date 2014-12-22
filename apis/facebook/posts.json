@@ -1,0 +1,168 @@
+{
+  "type": "object",
+  "properties": {
+    "data": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "actions": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "link": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "name",
+                "link"
+              ]
+            }
+          },
+          "application": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "id": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "name",
+              "id"
+            ]
+          },
+          "caption": {
+            "type": "string"
+          },
+          "created_time": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "from": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "id",
+              "name"
+            ]
+          },
+          "icon": {
+            "type": "string"
+          },
+          "is_hidden": {
+            "type": "boolean"
+          },
+          "link": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "object_id": {
+            "type": "string"
+          },
+          "picture": {
+            "type": "string"
+          },
+          "privacy": {
+            "type": "object",
+            "properties": {
+              "description": {
+                "type": "string"
+              },
+              "value": {
+                "type": "string"
+              },
+              "friends": {
+                "type": "string"
+              },
+              "networks": {
+                "type": "string"
+              },
+              "allow": {
+                "type": "string"
+              },
+              "deny": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "description",
+              "value",
+              "friends",
+              "networks",
+              "allow",
+              "deny"
+            ]
+          },
+          "source": {
+            "type": "string"
+          },
+          "status_type": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "updated_time": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "from",
+          "message",
+          "actions",
+          "privacy",
+          "type",
+          "status_type",
+          "application",
+          "created_time",
+          "updated_time"
+        ]
+      }
+    },
+    "paging": {
+      "type": "object",
+      "properties": {
+        "previous": {
+          "type": "string"
+        },
+        "next": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "previous",
+        "next"
+      ]
+    }
+  },
+  "required": [
+    "data",
+    "paging"
+  ]
+}
