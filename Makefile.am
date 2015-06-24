@@ -3,8 +3,10 @@ ACLOCAL_AMFLAGS = -I m4
 
 SUFFIXES = .hs
 
+HSPACKAGE_DB = -package-db=/home/fabian/src/API/.cabal-sandbox/x86_64-linux-ghc-7.10.1-packages.conf.d
+
 HSCOMPILE = ghc
-HSFLAGS = --make -fforce-recomp -dynamic -Wc,-shared -fPIC -isrc -odir build -hidir build -stubdir ffi/c/lib -hide-all-packages -package aeson -package containers -package base -package deepseq -package directory -package ecma262 -package exceptions -package filemanip -package filepath -package hslogger -package hxt -package mtl -package opendatatable -package split -package template-haskell -package text -package th-lift -package time -package transformers -package unordered-containers -package utf8-string -package yql
+HSFLAGS = --make $(HSPACKAGE_DB) -fforce-recomp -dynamic -Wc,-shared -fPIC -isrc -odir build -hidir build -stubdir ffi/c/lib -hide-all-packages -package aeson -package containers -package base -package deepseq -package directory -package ecma262 -package exceptions -package filemanip -package filepath -package hslogger -package hxt -package mtl -package opendatatable -package split -package template-haskell -package text -package th-lift -package time -package transformers -package unordered-containers -package utf8-string -package yql
 HSLIBDIR = $(shell ghc --print-libdir)
 HSGHCVERSION = $(shell $(HSCOMPILE) --version | sed "s/[[a-zA-Z ,]*\([0-9.]*\)[a-zA-Z ]]*/\1/")
 
@@ -16,7 +18,15 @@ libAPIs_la_SOURCES = src/TH/FFIs.hs ffi/c/bracket.c
 libAPIs_la_CFLAGS = -Iffi -I$(HSLIBDIR)/include
 libAPIsdir = $(libdir)
 libAPIs_DATA = src/TH/.libs/FFIs.o
-libAPIs_la_LDFLAGS = -Wl,-rpath,'$(libdir)',-rpath,'$(HSLIBDIR)/rts-1.0' -L$(HSLIBDIR)/rts-1.0 -lHSrts-ghc$(HSGHCVERSION)
+libAPIs_la_LDFLAGS = -Wl,-rpath,'$(libdir)',-rpath,'$(HSLIBDIR)/rts' -L$(HSLIBDIR)/rts -lHSrts-ghc$(HSGHCVERSION)
+
+# Go
+
+lib_LTLIBRARIES += libAPIsGo.la
+libAPIsGo_la_LIBADD = libAPIs.la
+libAPIsGo_la_SOURCES = ffi/go/ffi_go.cpp
+libAPIsGo_la_CPPFLAGS = -Iffi -Iffi/c/lib -Iffi/cpp/lib
+libAPIsGo_la_LDFLAGS = -Wl,-rpath,'$(libdir)',-rpath,'$(HSLIBDIR)/rts'
 
 # Java
 
@@ -24,7 +34,7 @@ lib_LTLIBRARIES += libAPIsJava.la
 libAPIsJava_la_LIBADD = libAPIs.la
 libAPIsJava_la_SOURCES = ffi/java/ffi_java.cpp
 libAPIsJava_la_CPPFLAGS = -Iffi -Iffi/c/lib -Iffi/cpp/lib -I$(JNI_INCLUDE_DIRS) -I$(JNI_INCLUDE_DIRS)/linux
-libAPIsJava_la_LDFLAGS = -Wl,-rpath,'$(libdir)',-rpath,'$(HSLIBDIR)/rts-1.0'
+libAPIsJava_la_LDFLAGS = -Wl,-rpath,'$(libdir)',-rpath,'$(HSLIBDIR)/rts'
 
 # Python2
 
@@ -34,7 +44,7 @@ lib_LTLIBRARIES += libAPIsPython2.la
 libAPIsPython2_la_LIBADD = libAPIs.la
 libAPIsPython2_la_SOURCES = ffi/python2/ffi_python2.cpp
 libAPIsPython2_la_CPPFLAGS = -Iffi -Iffi/c/lib -Iffi/cpp/lib $(PY2INCLUDES)
-libAPIsPython2_la_LDFLAGS = -Wl,-rpath,'$(libdir)',-rpath,'$(HSLIBDIR)/rts-1.0'
+libAPIsPython2_la_LDFLAGS = -Wl,-rpath,'$(libdir)',-rpath,'$(HSLIBDIR)/rts'
 
 # Python3
 
@@ -44,15 +54,15 @@ lib_LTLIBRARIES += libAPIsPython3.la
 libAPIsPython3_la_LIBADD = libAPIs.la
 libAPIsPython3_la_SOURCES = ffi/python3/ffi_python3.cpp
 libAPIsPython3_la_CPPFLAGS = -Iffi -Iffi/c/lib -Iffi/cpp/lib $(PY3INCLUDES)
-libAPIsPython3_la_LDFLAGS = -Wl,-rpath,'$(libdir)',-rpath,'$(HSLIBDIR)/rts-1.0'
+libAPIsPython3_la_LDFLAGS = -Wl,-rpath,'$(libdir)',-rpath,'$(HSLIBDIR)/rts'
 
-# Go
+# Ruby
 
-lib_LTLIBRARIES += libAPIsGo.la
-libAPIsGo_la_LIBADD = libAPIs.la
-libAPIsGo_la_SOURCES = ffi/go/ffi_go.cpp
-libAPIsGo_la_CPPFLAGS = -Iffi -Iffi/c/lib -Iffi/cpp/lib
-libAPIsGo_la_LDFLAGS = -Wl,-rpath,'$(libdir)',-rpath,'$(HSLIBDIR)/rts-1.0'
+lib_LTLIBRARIES += libAPIsRuby.la
+libAPIsRuby_la_LIBADD = libAPIs.la
+libAPIsRuby_la_SOURCES = ffi/go/ffi_go.cpp
+libAPIsRuby_la_CPPFLAGS = -Iffi -Iffi/c/lib -Iffi/cpp/lib
+libAPIsRuby_la_LDFLAGS = -Wl,-rpath,'$(libdir)',-rpath,'$(HSLIBDIR)/rts'
 
 # Tcl
 
@@ -60,14 +70,14 @@ lib_LTLIBRARIES += libAPIsTcl.la
 libAPIsTcl_la_LIBADD = libAPIs.la
 libAPIsTcl_la_SOURCES = ffi/tcl/ffi_tcl.cpp
 libAPIsTcl_la_CPPFLAGS = -Iffi -Iffi/c/lib -Iffi/cpp/lib
-libAPIsTcl_la_LDFLAGS = -Wl,-rpath,'$(libdir)',-rpath,'$(HSLIBDIR)/rts-1.0'
+libAPIsTcl_la_LDFLAGS = -Wl,-rpath,'$(libdir)',-rpath,'$(HSLIBDIR)/rts'
 
 .PHONY: preprocessor preprocessor-clean ffi ffi-install ffi-uninstalls ffi-clean packages packages-clean makepkg makepkg-clean all-clean
 
 preprocessor:
-	ghc -fforce-recomp -isrc -hidir build -odir build -stubdir ffi/c/lib src/TH/HSCs.hs src/TH/SWIGs.hs
+	ghc $(HSPACKAGE_DB) -fforce-recomp -isrc -hidir build -odir build -stubdir ffi/c/lib src/TH/HSCs.hs src/TH/SWIGs.hs
 	hsc2hs -C '-I.' src/FFI/*.hsc src/FFI/Data/*/*.hsc
-	ghc -fforce-recomp -isrc -hidir build -odir build -stubdir ffi/c/lib src/TH/FFIs.hs
+	ghc $(HSPACKAGE_DB) -fforce-recomp -isrc -hidir build -odir build -stubdir ffi/c/lib src/TH/FFIs.hs
 	$(MAKE) -C ffi swig
 
 preprocessor-clean:

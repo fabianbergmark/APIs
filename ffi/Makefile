@@ -1,8 +1,8 @@
-.PHONY: all swig go go-swig java java-swig python python-swig python2 python2-swig python3 python3-swig tcl tcl-swig samples install uninstall clean
+.PHONY: all swig go go-swig java java-swig python python-swig python2 python2-swig python3 python3-swig ruby ruby-swig tcl tcl-swig samples install uninstall clean
 
-all: swig go java python tcl
+all: swig go java python ruby tcl
 
-swig: go-swig java-swig python-swig tcl-swig
+swig: go-swig java-swig python-swig ruby-swig tcl-swig
 
 go-swig:
 	mkdir -p go
@@ -34,6 +34,13 @@ python3-swig:
 
 python3:
 	$(MAKE) -C python3
+
+ruby-swig:
+	mkdir -p ruby
+	swig -c++ -ruby -autorename -O -Wall -o ruby/ffi_ruby.cpp -outdir ruby/ ffi.i
+
+ruby:
+	$(MAKE) -C ruby
 
 tcl-swig:
 	mkdir -p tcl

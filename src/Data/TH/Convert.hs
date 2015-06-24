@@ -12,22 +12,22 @@ class Convert a where
   convert :: a -> Primitive
 
 instance Convert Double where
-  convert = inj . Number
+  convert = r.r.inj . Number
 
 instance Convert Int where
-  convert = inj . Number . fromIntegral
+  convert = r.r.inj . Number . fromIntegral
 
 instance Convert Null where
   convert = inj
 
 instance Convert Undefined where
-  convert = inj
+  convert = r.inj
 
 instance Convert Number where
-  convert = inj
+  convert = r.r.inj
 
 instance Convert String where
-  convert = inj
+  convert = r.r.r.inj
 
 instance Convert Bool where
-  convert = inj
+  convert = r.r.r.r.inj

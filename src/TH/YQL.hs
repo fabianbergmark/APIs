@@ -61,15 +61,15 @@ generateYQLPipe base API {..} = do
       t = AppT (AppT ArrowT (ConT ''YQLSettings)) (AppT (AppT ArrowT inType) (AppT (AppT (AppT (ConT ''APIT) (VarT s)) (VarT m)) (AppT (ConT ''Maybe) outType)))
       t' = ForallT
            [ PlainTV s, PlainTV m, PlainTV a ]
-           [ ClassP ''MonadIO [VarT m]
-           , ClassP ''MonadThrow [VarT m]
-           , ClassP ''YQLState [VarT s] ]
+           [ AppT (ConT ''MonadIO) (VarT m)
+           , AppT (ConT ''MonadThrow) (VarT m)
+           , AppT (ConT ''YQLState) (VarT s) ]
            t
       sig = SigD name t'
 
   body <-
-    [| \YQLSettings {..} input -> do
-        value <- liftIO $ runYQL opentable (toObject input)
+    [| \_ input -> do
+        value <- liftIO . runYQL opentable . toObject $ input
         case fromJSON value of
          Success output -> do
            return . Just $ output

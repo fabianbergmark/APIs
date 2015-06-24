@@ -80,27 +80,27 @@ library
 
     ghc-options: -fno-warn-orphans -fno-warn-unused-binds -fno-warn-unused-matches
            
-    build-depends: aeson                == 0.8.*
-                 , yql                  == 0.0.*
+    build-depends: aeson                == 0.*
+                 , yql                  == 0.*
                  , base                 == 4.*
-                 , containers           == 0.4.* || == 0.5.*
-                 , deepseq              == 1.3.*
-                 , directory            == 1.2.*
-                 , ecma262              == 0.0.*
-                 , exceptions           == 0.6.*
-                 , filemanip            == 0.3.*
-                 , filepath             == 1.3.*
-                 , hslogger             == 1.2.*
-                 , hxt                  == 9.3.*
-                 , mtl                  == 2.2.*
-                 , opendatatable        == 0.0.*
-                 , split                == 0.2.*
-                 , template-haskell     == 2.9.*
-                 , text                 == 1.1.*
-                 , th-lift              == 0.6.*
-                 , time                 == 1.4.*
-                 , transformers         == 0.4.*
-                 , unordered-containers == 0.2.*       
-                 , utf8-string          == 0.3.*
+                 , containers           == 0.*
+                 , deepseq              == 1.*
+                 , directory            == 1.*
+                 , ecma262              == 0.*
+                 , exceptions           == 0.*
+                 , filemanip            == 0.*
+                 , filepath             == 1.*
+                 , hslogger             == 1.*
+                 , hxt                  == 9.*
+                 , mtl                  == 2.*
+                 , opendatatable        == 0.*
+                 , split                == 0.*
+                 , template-haskell     == 2.*
+                 , text                 == 1.*
+                 , th-lift              == 0.*
+                 , time                 == 1.*
+                 , transformers         == 0.*
+                 , unordered-containers == 0.*       
+                 , utf8-string          == 0.*
 
 
