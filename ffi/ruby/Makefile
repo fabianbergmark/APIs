@@ -1,7 +1,8 @@
+
 SHELL = /bin/sh
 
 # V=0 quiet, V=1 verbose.  other values don't work.
-V = 1
+V = 0
 Q1 = $(V:1=)
 Q = $(Q1:0=@)
 ECHO1 = $(V:1=@:)
@@ -72,7 +73,7 @@ empty =
 OUTFLAG = -o $(empty)
 COUTFLAG = -o $(empty)
 
-RUBY_EXTCONF_H =
+RUBY_EXTCONF_H = 
 cflags   =  $(optflags) $(debugflags) $(warnflags)
 optflags = -O3 -fno-fast-math
 debugflags = -ggdb3
@@ -80,21 +81,21 @@ warnflags = -Wall -Wextra -Wno-unused-parameter -Wno-parentheses -Wno-long-long 
 CCDLFLAGS = -fPIC
 CFLAGS   = $(CCDLFLAGS) -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong --param=ssp-buffer-size=4 -fPIC $(ARCH_FLAG)
 INCFLAGS = -I. -I$(arch_hdrdir) -I$(hdrdir)/ruby/backward -I$(hdrdir) -I$(srcdir)
-DEFS     =
+DEFS     = 
 CPPFLAGS =  -D_FORTIFY_SOURCE=2 $(DEFS) $(cppflags)
 CXXFLAGS = $(CCDLFLAGS) -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong --param=ssp-buffer-size=4 $(ARCH_FLAG)
-ldflags  = -L. -Wl,-O1,-rpath,'/usr/local/lib',--sort-common,-z,relro -fstack-protector -rdynamic -Wl,-export-dynamic
-dldflags =
-ARCH_FLAG =
+ldflags  = -L. -Wl,-O1,--sort-common,--as-needed,-z,relro -fstack-protector -rdynamic -Wl,-export-dynamic
+dldflags = -Wl,-no-as-needed,-rpath,'/usr/local/lib' 
+ARCH_FLAG = 
 DLDFLAGS = $(ldflags) $(dldflags) $(ARCH_FLAG)
 LDSHARED = $(CC) -shared
 LDSHAREDXX = $(CXX) -shared
 AR = ar
-EXEEXT =
+EXEEXT = 
 
 RUBY_INSTALL_NAME = $(RUBY_BASE_NAME)
 RUBY_SO_NAME = ruby
-RUBYW_INSTALL_NAME =
+RUBYW_INSTALL_NAME = 
 RUBY_VERSION_NAME = $(RUBY_BASE_NAME)-$(ruby_version)
 RUBYW_BASE_NAME = rubyw
 RUBY_BASE_NAME = ruby
@@ -118,31 +119,31 @@ TOUCH = exit >
 
 #### End of system configuration section. ####
 
-preload =
+preload = 
 
 libpath = . $(libdir)
 LIBPATH =  -L. -L$(libdir)
-DEFFILE =
+DEFFILE = 
 
 CLEANFILES = mkmf.log
-DISTCLEANFILES =
-DISTCLEANDIRS =
+DISTCLEANFILES = 
+DISTCLEANDIRS = 
 
-extout =
-extout_prefix =
-target_prefix =
-LOCAL_LIBS =
-LIBS = $(LIBRUBYARG_SHARED)  -lpthread -lgmp -ldl -lcrypt -lm   -lc
+extout = 
+extout_prefix = 
+target_prefix = 
+LOCAL_LIBS = 
+LIBS = $(LIBRUBYARG_SHARED) -llAPIsRuby  -lpthread -lgmp -ldl -lcrypt -lm   -lc
 ORIG_SRCS = ffi_ruby.cpp
-SRCS = $(ORIG_SRCS)
+SRCS = $(ORIG_SRCS) 
 OBJS = ffi_ruby.o
-HDRS =
+HDRS = 
 TARGET = apis
 TARGET_NAME = apis
 TARGET_ENTRY = Init_$(TARGET_NAME)
 DLLIB = $(TARGET).so
-EXTSTATIC =
-STATIC_LIB =
+EXTSTATIC = 
+STATIC_LIB = 
 
 TIMESTAMP_DIR = .
 BINDIR        = $(bindir)
@@ -153,7 +154,7 @@ HDRDIR        = $(rubyhdrdir)/ruby$(target_prefix)
 ARCHHDRDIR    = $(rubyhdrdir)/$(arch)/ruby$(target_prefix)
 
 TARGET_SO     = $(DLLIB)
-CLEANLIBS     = $(TARGET).so
+CLEANLIBS     = $(TARGET).so 
 CLEANOBJS     = *.o  *.bak
 
 all:    $(DLLIB)
@@ -226,7 +227,7 @@ site-install-rb: install-rb
 
 .cpp.o:
 	$(ECHO) compiling $(<)
-	$(Q) $(CXX) $(INCFLAGS) $(CPPFLAGS) $(CXXFLAGS) $(LIBPATH) $(LIBS) $(COUTFLAG)$@ -c $<
+	$(Q) $(CXX) $(INCFLAGS) $(CPPFLAGS) $(CXXFLAGS) $(COUTFLAG)$@ -c $<
 
 .cpp.S:
 	$(ECHO) translating $(<)
@@ -257,4 +258,10 @@ $(DLLIB): $(OBJS) Makefile
 
 $(OBJS): $(HDRS) $(ruby_headers)
 INCFLAGS += -I.. -I../cpp/lib -I../c/lib
-LIBS += -lAPIsRuby
+
+install-gem:
+	cp apis.so apis/lib/apis/apis.so
+	gem build apis.gem
+	gem install apis-*.gem
+doc:
+	rdoc -o doc ffi_ruby.cpp

@@ -1,3 +1,5 @@
 /ffi_ruby.cpp
 doc/
 ffi_ruby.o
+*.time
+*.gem

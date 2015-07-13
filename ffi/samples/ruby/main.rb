@@ -1,4 +1,4 @@
-require './apis'
+require 'apis'
 
 y = Apis::YQLSettings.new
 i = Apis::InputSmhiPmp.new

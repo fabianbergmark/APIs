@@ -54,6 +54,7 @@ install:
 	$(MAKE) -C java install
 	$(MAKE) -C python2 install
 	$(MAKE) -C python3 install
+	$(MAKE) -C ruby install
 	$(MAKE) -C tcl install
 
 uninstall:
@@ -61,6 +62,7 @@ uninstall:
 	$(MAKE) -C java uninstall
 	$(MAKE) -C python2 uninstall
 	$(MAKE) -C python3 uninstall
+	$(MAKE) -C ruby uninstall
 	$(MAKE) -C tcl uninstall
 
 clean:
@@ -68,6 +70,7 @@ clean:
 	$(MAKE) -C java clean
 	$(MAKE) -C python2 clean
 	$(MAKE) -C python3 clean
+	$(MAKE) -C ruby clean
 	$(MAKE) -C tcl clean
 
 samples:

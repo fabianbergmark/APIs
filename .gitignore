@@ -18,3 +18,4 @@ dist/
 /ltmain.sh
 /libtool
 .dirstamp
+cabal.sandbox.config

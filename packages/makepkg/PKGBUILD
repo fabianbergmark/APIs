@@ -25,7 +25,7 @@ options=()
 install=
 changelog=
 source=($pkgname.tar.gz)
-md5sums=('c3fb16b7d874d35a1b7aa9a90b2fd8cb')
+md5sums=('32312858884539d785a4374b56ac9cad')
 noextract=()
 
 build() {
