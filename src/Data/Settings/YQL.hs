@@ -6,7 +6,7 @@ module Data.Settings.YQL
 import Control.Applicative (pure)
 import Data.Aeson
 
-import Data.JSON.Schema
+import Data.JSON.SchemaNoTH
 
 data YQLSettings =
   YQLSettings
