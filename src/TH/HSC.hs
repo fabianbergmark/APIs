@@ -84,9 +84,7 @@ writeHSCFile instances = do
         "import FFI.Maybe()\n" ++
         "import FFI.Void()\n" ++
         "\n" ++
-        "import TH.APIs\n" ++
-        "\n" ++
-        "#let alignment t = \"%lu\", (unsigned long)offsetof(struct {char x__; t (y__); }, y__)\n" ++
+        "import TH.APIsNoTH\n" ++
         "\n" ++
         "#include \"ffi/c/lib/types.h\"\n" ++
         "\n"
@@ -196,7 +194,7 @@ generateStorableInstance dec@(DataD _ name _ cons _) = do
   let tName = show name
       hscInstance =
         "instance Storable " ++ tName ++ " where\n" ++
-        "  alignment _ = #{alignment " ++ tName ++ "}\n" ++
+        "  alignment _ = #{const (offsetof(struct {char x__; " ++ tName ++ " (y__); }, y__))}\n" ++
         "  sizeOf _ = #{size " ++ tName ++ "}\n" ++
         "  peek ptr = do\n" ++
         snd (foldl

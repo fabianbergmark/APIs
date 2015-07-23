@@ -19,3 +19,4 @@ dist/
 /libtool
 .dirstamp
 cabal.sandbox.config
+*~

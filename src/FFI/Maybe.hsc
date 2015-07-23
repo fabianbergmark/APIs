@@ -5,12 +5,10 @@ module FFI.Maybe where
 import Foreign
 import Foreign.C.Types
 
-#let alignment t = "%lu", (unsigned long)offsetof(struct {char x__; t (y__); }, y__)
-
 #include "ffi/c/lib/maybe.h"
 
 instance Storable a => Storable (Maybe a) where
-  alignment _ = #{alignment Maybe}
+  alignment _ = #{const (offsetof(struct {char x__;  Maybe (y__); }, y__))}
   sizeOf _ = #{size Maybe}
   peek ptr = do
     j :: CInt <- #{peek Maybe, just} ptr

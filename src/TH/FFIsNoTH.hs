@@ -2,17 +2,17 @@
 
 module TH.FFIsNoTH where
 
-import FFI.Types ()
-
-import TH.APIsNoTH
-import TH.YQLsNoTH
+import Control.Monad.Trans.API (runAPIT)
 import Data.Settings.YQL
 import Data.State.YQL
+import FFI.Types ()
+import TH.APIsNoTH
+import TH.YQLsNoTH
 import TH.FFI
-import Control.Monad.Trans.API (runAPIT)
+
+import Control.Applicative ((<$>))
 import Foreign.Storable
 import Foreign.Marshal.Utils (new)
-
 import GHC.Ptr
 
 data State

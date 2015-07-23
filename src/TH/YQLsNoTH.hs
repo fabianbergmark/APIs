@@ -9,7 +9,8 @@ import Language.Haskell.TH
 import TH.APIsNoTH
 import qualified YQL
 import qualified Data.TH.Object
-import qualified Data.OpenDataTable
+import Data.OpenDataTableNoTH
+import qualified Data.OpenDataTableNoTH
 import qualified Data.Settings.YQL
 import qualified Data.State.YQL
 import qualified Control.Monad.Trans.API
@@ -32,11 +33,11 @@ dropboxFiles
       -> do { value_ak0KG <- ((Control.Monad.IO.Class.liftIO
                                .
                                  ((YQL.runYQL
-                                     (Data.OpenDataTable.OpenDataTable
+                                     (OpenDataTable
                                         Nothing
                                         Nothing
                                         Nothing
-                                        (Data.OpenDataTable.Meta
+                                        (Meta
                                            (Just
                                               "\n\
                                               \      Fabian Bergmark\n\
@@ -49,57 +50,57 @@ dropboxFiles
                                            Nothing
                                            [])
                                         Nothing
-                                        [Data.OpenDataTable.SelectBinding
-                                           (Data.OpenDataTable.Select
+                                        [SelectBinding
+                                           (Select
                                               Nothing
-                                              (Just Data.OpenDataTable.ProductJSON)
+                                              (Just ProductJSON)
                                               Nothing
                                               (Just
                                                  "\n\
                                                  \          https://api-content.dropbox.com/1/files/{root}/{path}\n\
                                                  \        ")
-                                              [Data.OpenDataTable.InputKey
-                                                 (Data.OpenDataTable.InputInfo
+                                              [InputKey
+                                                 (InputInfo
                                                     "root"
                                                     Nothing
-                                                    Data.OpenDataTable.InputTypeString
-                                                    Data.OpenDataTable.ParamTypePath
+                                                    InputTypeString
+                                                    ParamTypePath
                                                     True
                                                     (Just "auto")
                                                     Nothing
                                                     Nothing
                                                     Nothing
                                                     Nothing),
-                                               Data.OpenDataTable.InputKey
-                                                 (Data.OpenDataTable.InputInfo
+                                               InputKey
+                                                 (InputInfo
                                                     "path"
                                                     Nothing
-                                                    Data.OpenDataTable.InputTypeString
-                                                    Data.OpenDataTable.ParamTypePath
+                                                    InputTypeString
+                                                    ParamTypePath
                                                     True
                                                     Nothing
                                                     Nothing
                                                     Nothing
                                                     Nothing
                                                     Nothing),
-                                               Data.OpenDataTable.InputKey
-                                                 (Data.OpenDataTable.InputInfo
+                                               InputKey
+                                                 (InputInfo
                                                     "rev"
                                                     Nothing
-                                                    Data.OpenDataTable.InputTypeDouble
-                                                    Data.OpenDataTable.ParamTypeQuery
+                                                    InputTypeDouble
+                                                    ParamTypeQuery
                                                     False
                                                     Nothing
                                                     Nothing
                                                     Nothing
                                                     Nothing
                                                     Nothing),
-                                               Data.OpenDataTable.InputKey
-                                                 (Data.OpenDataTable.InputInfo
+                                               InputKey
+                                                 (InputInfo
                                                     "access_token"
                                                     Nothing
-                                                    Data.OpenDataTable.InputTypeString
-                                                    Data.OpenDataTable.ParamTypeVariable
+                                                    InputTypeString
+                                                    ParamTypeVariable
                                                     True
                                                     Nothing
                                                     Nothing
@@ -144,11 +145,11 @@ dropboxFilesPut
       -> do { value_ak0KJ <- ((Control.Monad.IO.Class.liftIO
                                .
                                  ((YQL.runYQL
-                                     (Data.OpenDataTable.OpenDataTable
+                                     (OpenDataTable
                                         Nothing
                                         Nothing
                                         Nothing
-                                        (Data.OpenDataTable.Meta
+                                        (Meta
                                            (Just
                                               "\n\
                                               \      Fabian Bergmark\n\
@@ -161,69 +162,69 @@ dropboxFilesPut
                                            Nothing
                                            [])
                                         Nothing
-                                        [Data.OpenDataTable.SelectBinding
-                                           (Data.OpenDataTable.Select
+                                        [SelectBinding
+                                           (Select
                                               Nothing
-                                              (Just Data.OpenDataTable.ProductJSON)
+                                              (Just ProductJSON)
                                               Nothing
                                               (Just
                                                  "\n\
                                                  \          https://api-content.dropbox.com/1/files_put/{root}/{path}\n\
                                                  \        ")
-                                              [Data.OpenDataTable.InputKey
-                                                 (Data.OpenDataTable.InputInfo
+                                              [InputKey
+                                                 (InputInfo
                                                     "root"
                                                     Nothing
-                                                    Data.OpenDataTable.InputTypeString
-                                                    Data.OpenDataTable.ParamTypePath
+                                                    InputTypeString
+                                                    ParamTypePath
                                                     True
                                                     (Just "auto")
                                                     Nothing
                                                     Nothing
                                                     Nothing
                                                     Nothing),
-                                               Data.OpenDataTable.InputKey
-                                                 (Data.OpenDataTable.InputInfo
+                                               InputKey
+                                                 (InputInfo
                                                     "path"
                                                     Nothing
-                                                    Data.OpenDataTable.InputTypeString
-                                                    Data.OpenDataTable.ParamTypePath
+                                                    InputTypeString
+                                                    ParamTypePath
                                                     True
                                                     Nothing
                                                     Nothing
                                                     Nothing
                                                     Nothing
                                                     Nothing),
-                                               Data.OpenDataTable.InputKey
-                                                 (Data.OpenDataTable.InputInfo
+                                               InputKey
+                                                 (InputInfo
                                                     "param"
                                                     Nothing
-                                                    Data.OpenDataTable.InputTypeString
-                                                    Data.OpenDataTable.ParamTypeQuery
+                                                    InputTypeString
+                                                    ParamTypeQuery
                                                     False
                                                     Nothing
                                                     Nothing
                                                     Nothing
                                                     Nothing
                                                     Nothing),
-                                               Data.OpenDataTable.InputKey
-                                                 (Data.OpenDataTable.InputInfo
+                                               InputKey
+                                                 (InputInfo
                                                     "content"
                                                     Nothing
-                                                    Data.OpenDataTable.InputTypeString
-                                                    Data.OpenDataTable.ParamTypeVariable
+                                                    InputTypeString
+                                                    ParamTypeVariable
                                                     True
                                                     Nothing
                                                     Nothing
                                                     Nothing
                                                     Nothing
                                                     Nothing),
-                                               Data.OpenDataTable.InputKey
-                                                 (Data.OpenDataTable.InputInfo
+                                               InputKey
+                                                 (InputInfo
                                                     "access_token"
                                                     Nothing
-                                                    Data.OpenDataTable.InputTypeString
-                                                    Data.OpenDataTable.ParamTypeVariable
+                                                    InputTypeString
+                                                    ParamTypeVariable
                                                     True
                                                     Nothing
                                                     Nothing
@@ -266,11 +267,11 @@ dropboxMetadata
       -> do { value_ak0KM <- ((Control.Monad.IO.Class.liftIO
                                .
                                  ((YQL.runYQL
-                                     (Data.OpenDataTable.OpenDataTable
+                                     (OpenDataTable
                                         Nothing
                                         Nothing
                                         Nothing
-                                        (Data.OpenDataTable.Meta
+                                        (Meta
                                            (Just
                                               "\n\
                                               \      Fabian Bergmark\n\
@@ -283,129 +284,129 @@ dropboxMetadata
                                            Nothing
                                            [])
                                         Nothing
-                                        [Data.OpenDataTable.SelectBinding
-                                           (Data.OpenDataTable.Select
+                                        [SelectBinding
+                                           (Select
                                               Nothing
-                                              (Just Data.OpenDataTable.ProductJSON)
+                                              (Just ProductJSON)
                                               Nothing
                                               (Just
                                                  "\n\
                                                  \          https://api.dropbox.com/1/metadata/{root}/{path}\n\
                                                  \        ")
-                                              [Data.OpenDataTable.InputKey
-                                                 (Data.OpenDataTable.InputInfo
+                                              [InputKey
+                                                 (InputInfo
                                                     "path"
                                                     Nothing
-                                                    Data.OpenDataTable.InputTypeString
-                                                    Data.OpenDataTable.ParamTypePath
+                                                    InputTypeString
+                                                    ParamTypePath
                                                     True
                                                     (Just "auto")
                                                     Nothing
                                                     Nothing
                                                     Nothing
                                                     Nothing),
-                                               Data.OpenDataTable.InputKey
-                                                 (Data.OpenDataTable.InputInfo
+                                               InputKey
+                                                 (InputInfo
                                                     "root"
                                                     Nothing
-                                                    Data.OpenDataTable.InputTypeString
-                                                    Data.OpenDataTable.ParamTypePath
+                                                    InputTypeString
+                                                    ParamTypePath
                                                     False
                                                     (Just "dropbox")
                                                     Nothing
                                                     Nothing
                                                     Nothing
                                                     Nothing),
-                                               Data.OpenDataTable.InputKey
-                                                 (Data.OpenDataTable.InputInfo
+                                               InputKey
+                                                 (InputInfo
                                                     "file_limit"
                                                     Nothing
-                                                    Data.OpenDataTable.InputTypeDouble
-                                                    Data.OpenDataTable.ParamTypeQuery
+                                                    InputTypeDouble
+                                                    ParamTypeQuery
                                                     False
                                                     Nothing
                                                     Nothing
                                                     Nothing
                                                     Nothing
                                                     Nothing),
-                                               Data.OpenDataTable.InputKey
-                                                 (Data.OpenDataTable.InputInfo
+                                               InputKey
+                                                 (InputInfo
                                                     "hash"
                                                     Nothing
-                                                    Data.OpenDataTable.InputTypeString
-                                                    Data.OpenDataTable.ParamTypeQuery
+                                                    InputTypeString
+                                                    ParamTypeQuery
                                                     False
                                                     Nothing
                                                     Nothing
                                                     Nothing
                                                     Nothing
                                                     Nothing),
-                                               Data.OpenDataTable.InputKey
-                                                 (Data.OpenDataTable.InputInfo
+                                               InputKey
+                                                 (InputInfo
                                                     "list"
                                                     Nothing
-                                                    Data.OpenDataTable.InputTypeBool
-                                                    Data.OpenDataTable.ParamTypeQuery
+                                                    InputTypeBool
+                                                    ParamTypeQuery
                                                     False
                                                     Nothing
                                                     Nothing
                                                     Nothing
                                                     Nothing
                                                     Nothing),
-                                               Data.OpenDataTable.InputKey
-                                                 (Data.OpenDataTable.InputInfo
+                                               InputKey
+                                                 (InputInfo
                                                     "include_deleted"
                                                     Nothing
-                                                    Data.OpenDataTable.InputTypeBool
-                                                    Data.OpenDataTable.ParamTypeQuery
+                                                    InputTypeBool
+                                                    ParamTypeQuery
                                                     False
                                                     Nothing
                                                     Nothing
                                                     Nothing
                                                     Nothing
                                                     Nothing),
-                                               Data.OpenDataTable.InputKey
-                                                 (Data.OpenDataTable.InputInfo
+                                               InputKey
+                                                 (InputInfo
                                                     "rev"
                                                     Nothing
-                                                    Data.OpenDataTable.InputTypeDouble
-                                                    Data.OpenDataTable.ParamTypeQuery
+                                                    InputTypeDouble
+                                                    ParamTypeQuery
                                                     False
                                                     Nothing
                                                     Nothing
                                                     Nothing
                                                     Nothing
                                                     Nothing),
-                                               Data.OpenDataTable.InputKey
-                                                 (Data.OpenDataTable.InputInfo
+                                               InputKey
+                                                 (InputInfo
                                                     "locale"
                                                     Nothing
-                                                    Data.OpenDataTable.InputTypeString
-                                                    Data.OpenDataTable.ParamTypeQuery
+                                                    InputTypeString
+                                                    ParamTypeQuery
                                                     False
                                                     Nothing
                                                     Nothing
                                                     Nothing
                                                     Nothing
                                                     Nothing),
-                                               Data.OpenDataTable.InputKey
-                                                 (Data.OpenDataTable.InputInfo
+                                               InputKey
+                                                 (InputInfo
                                                     "include_media_info"
                                                     Nothing
-                                                    Data.OpenDataTable.InputTypeBool
-                                                    Data.OpenDataTable.ParamTypeQuery
+                                                    InputTypeBool
+                                                    ParamTypeQuery
                                                     False
                                                     Nothing
                                                     Nothing
                                                     Nothing
                                                     Nothing
                                                     Nothing),
-                                               Data.OpenDataTable.InputKey
-                                                 (Data.OpenDataTable.InputInfo
+                                               InputKey
+                                                 (InputInfo
                                                     "access_token"
                                                     Nothing
-                                                    Data.OpenDataTable.InputTypeString
-                                                    Data.OpenDataTable.ParamTypeVariable
+                                                    InputTypeString
+                                                    ParamTypeVariable
                                                     True
                                                     Nothing
                                                     Nothing
@@ -450,11 +451,11 @@ facebookGraphUserFeed
       -> do { value_ak0KP <- ((Control.Monad.IO.Class.liftIO
                                .
                                  ((YQL.runYQL
-                                     (Data.OpenDataTable.OpenDataTable
+                                     (OpenDataTable
                                         Nothing
                                         Nothing
                                         Nothing
-                                        (Data.OpenDataTable.Meta
+                                        (Meta
                                            (Just
                                               "\n\
                                               \      Fabian Bergmark\n\
@@ -467,33 +468,33 @@ facebookGraphUserFeed
                                            Nothing
                                            [])
                                         Nothing
-                                        [Data.OpenDataTable.SelectBinding
-                                           (Data.OpenDataTable.Select
+                                        [SelectBinding
+                                           (Select
                                               Nothing
-                                              (Just Data.OpenDataTable.ProductJSON)
+                                              (Just ProductJSON)
                                               Nothing
                                               (Just
                                                  "\n\
                                                  \          https://graph.facebook.com/v2.2/{user_id}/feed\n\
                                                  \        ")
-                                              [Data.OpenDataTable.InputKey
-                                                 (Data.OpenDataTable.InputInfo
+                                              [InputKey
+                                                 (InputInfo
                                                     "user_id"
                                                     Nothing
-                                                    Data.OpenDataTable.InputTypeString
-                                                    Data.OpenDataTable.ParamTypePath
+                                                    InputTypeString
+                                                    ParamTypePath
                                                     True
                                                     Nothing
                                                     Nothing
                                                     Nothing
                                                     Nothing
                                                     Nothing),
-                                               Data.OpenDataTable.InputKey
-                                                 (Data.OpenDataTable.InputInfo
+                                               InputKey
+                                                 (InputInfo
                                                     "access_token"
                                                     Nothing
-                                                    Data.OpenDataTable.InputTypeString
-                                                    Data.OpenDataTable.ParamTypeQuery
+                                                    InputTypeString
+                                                    ParamTypeQuery
                                                     True
                                                     Nothing
                                                     Nothing
@@ -527,11 +528,11 @@ facebookGraphUserFeedPost
       -> do { value_ak0KS <- ((Control.Monad.IO.Class.liftIO
                                .
                                  ((YQL.runYQL
-                                     (Data.OpenDataTable.OpenDataTable
+                                     (OpenDataTable
                                         Nothing
                                         Nothing
                                         Nothing
-                                        (Data.OpenDataTable.Meta
+                                        (Meta
                                            (Just
                                               "\n\
                                               \      Fabian Bergmark\n\
@@ -544,117 +545,117 @@ facebookGraphUserFeedPost
                                            Nothing
                                            [])
                                         Nothing
-                                        [Data.OpenDataTable.SelectBinding
-                                           (Data.OpenDataTable.Select
+                                        [SelectBinding
+                                           (Select
                                               Nothing
-                                              (Just Data.OpenDataTable.ProductJSON)
+                                              (Just ProductJSON)
                                               Nothing
                                               (Just
                                                  "\n\
                                                  \          https://graph.facebook.com/v2.2/{user_id}/feed\n\
                                                  \        ")
-                                              [Data.OpenDataTable.InputKey
-                                                 (Data.OpenDataTable.InputInfo
+                                              [InputKey
+                                                 (InputInfo
                                                     "user_id"
                                                     Nothing
-                                                    Data.OpenDataTable.InputTypeString
-                                                    Data.OpenDataTable.ParamTypePath
+                                                    InputTypeString
+                                                    ParamTypePath
                                                     True
                                                     Nothing
                                                     Nothing
                                                     Nothing
                                                     Nothing
                                                     Nothing),
-                                               Data.OpenDataTable.InputKey
-                                                 (Data.OpenDataTable.InputInfo
+                                               InputKey
+                                                 (InputInfo
                                                     "access_token"
                                                     Nothing
-                                                    Data.OpenDataTable.InputTypeString
-                                                    Data.OpenDataTable.ParamTypeQuery
+                                                    InputTypeString
+                                                    ParamTypeQuery
                                                     True
                                                     Nothing
                                                     Nothing
                                                     Nothing
                                                     Nothing
                                                     Nothing),
-                                               Data.OpenDataTable.InputKey
-                                                 (Data.OpenDataTable.InputInfo
+                                               InputKey
+                                                 (InputInfo
                                                     "message"
                                                     Nothing
-                                                    Data.OpenDataTable.InputTypeString
-                                                    Data.OpenDataTable.ParamTypeVariable
+                                                    InputTypeString
+                                                    ParamTypeVariable
                                                     False
                                                     Nothing
                                                     Nothing
                                                     Nothing
                                                     Nothing
                                                     Nothing),
-                                               Data.OpenDataTable.InputKey
-                                                 (Data.OpenDataTable.InputInfo
+                                               InputKey
+                                                 (InputInfo
                                                     "link"
                                                     Nothing
-                                                    Data.OpenDataTable.InputTypeString
-                                                    Data.OpenDataTable.ParamTypeVariable
+                                                    InputTypeString
+                                                    ParamTypeVariable
                                                     False
                                                     Nothing
                                                     Nothing
                                                     Nothing
                                                     Nothing
                                                     Nothing),
-                                               Data.OpenDataTable.InputKey
-                                                 (Data.OpenDataTable.InputInfo
+                                               InputKey
+                                                 (InputInfo
                                                     "actions"
                                                     Nothing
-                                                    Data.OpenDataTable.InputTypeString
-                                                    Data.OpenDataTable.ParamTypeVariable
+                                                    InputTypeString
+                                                    ParamTypeVariable
                                                     False
                                                     Nothing
                                                     Nothing
                                                     Nothing
                                                     Nothing
                                                     Nothing),
-                                               Data.OpenDataTable.InputKey
-                                                 (Data.OpenDataTable.InputInfo
+                                               InputKey
+                                                 (InputInfo
                                                     "place"
                                                     Nothing
-                                                    Data.OpenDataTable.InputTypeString
-                                                    Data.OpenDataTable.ParamTypeVariable
+                                                    InputTypeString
+                                                    ParamTypeVariable
                                                     False
                                                     Nothing
                                                     Nothing
                                                     Nothing
                                                     Nothing
                                                     Nothing),
-                                               Data.OpenDataTable.InputKey
-                                                 (Data.OpenDataTable.InputInfo
+                                               InputKey
+                                                 (InputInfo
                                                     "tags"
                                                     Nothing
-                                                    Data.OpenDataTable.InputTypeString
-                                                    Data.OpenDataTable.ParamTypeVariable
+                                                    InputTypeString
+                                                    ParamTypeVariable
                                                     False
                                                     Nothing
                                                     Nothing
                                                     Nothing
                                                     Nothing
                                                     Nothing),
-                                               Data.OpenDataTable.InputKey
-                                                 (Data.OpenDataTable.InputInfo
+                                               InputKey
+                                                 (InputInfo
                                                     "privacy"
                                                     Nothing
-                                                    Data.OpenDataTable.InputTypeString
-                                                    Data.OpenDataTable.ParamTypeVariable
+                                                    InputTypeString
+                                                    ParamTypeVariable
                                                     False
                                                     Nothing
                                                     Nothing
                                                     Nothing
                                                     Nothing
                                                     Nothing),
-                                               Data.OpenDataTable.InputKey
-                                                 (Data.OpenDataTable.InputInfo
+                                               InputKey
+                                                 (InputInfo
                                                     "object_attachment"
                                                     Nothing
-                                                    Data.OpenDataTable.InputTypeString
-                                                    Data.OpenDataTable.ParamTypeVariable
+                                                    InputTypeString
+                                                    ParamTypeVariable
                                                     False
                                                     Nothing
                                                     Nothing
@@ -707,11 +708,11 @@ facebookGraphUserFriendlists
       -> do { value_ak0KV <- ((Control.Monad.IO.Class.liftIO
                                .
                                  ((YQL.runYQL
-                                     (Data.OpenDataTable.OpenDataTable
+                                     (OpenDataTable
                                         Nothing
                                         Nothing
                                         Nothing
-                                        (Data.OpenDataTable.Meta
+                                        (Meta
                                            (Just
                                               "\n\
                                               \      Fabian Bergmark\n\
@@ -724,33 +725,33 @@ facebookGraphUserFriendlists
                                            Nothing
                                            [])
                                         Nothing
-                                        [Data.OpenDataTable.SelectBinding
-                                           (Data.OpenDataTable.Select
+                                        [SelectBinding
+                                           (Select
                                               Nothing
-                                              (Just Data.OpenDataTable.ProductJSON)
+                                              (Just ProductJSON)
                                               Nothing
                                               (Just
                                                  "\n\
                                                  \          https://graph.facebook.com/v2.2/{user_id}/friendlists\n\
                                                  \        ")
-                                              [Data.OpenDataTable.InputKey
-                                                 (Data.OpenDataTable.InputInfo
+                                              [InputKey
+                                                 (InputInfo
                                                     "user_id"
                                                     Nothing
-                                                    Data.OpenDataTable.InputTypeString
-                                                    Data.OpenDataTable.ParamTypePath
+                                                    InputTypeString
+                                                    ParamTypePath
                                                     True
                                                     Nothing
                                                     Nothing
                                                     Nothing
                                                     Nothing
                                                     Nothing),
-                                               Data.OpenDataTable.InputKey
-                                                 (Data.OpenDataTable.InputInfo
+                                               InputKey
+                                                 (InputInfo
                                                     "access_token"
                                                     Nothing
-                                                    Data.OpenDataTable.InputTypeString
-                                                    Data.OpenDataTable.ParamTypeQuery
+                                                    InputTypeString
+                                                    ParamTypeQuery
                                                     True
                                                     Nothing
                                                     Nothing
@@ -784,11 +785,11 @@ facebookGraphUserFriends
       -> do { value_ak0KY <- ((Control.Monad.IO.Class.liftIO
                                .
                                  ((YQL.runYQL
-                                     (Data.OpenDataTable.OpenDataTable
+                                     (OpenDataTable
                                         Nothing
                                         Nothing
                                         Nothing
-                                        (Data.OpenDataTable.Meta
+                                        (Meta
                                            (Just
                                               "\n\
                                               \      Fabian Bergmark\n\
@@ -801,33 +802,33 @@ facebookGraphUserFriends
                                            Nothing
                                            [])
                                         Nothing
-                                        [Data.OpenDataTable.SelectBinding
-                                           (Data.OpenDataTable.Select
+                                        [SelectBinding
+                                           (Select
                                               Nothing
-                                              (Just Data.OpenDataTable.ProductJSON)
+                                              (Just ProductJSON)
                                               Nothing
                                               (Just
                                                  "\n\
                                                  \          https://graph.facebook.com/v2.2/{user_id}/friends\n\
                                                  \        ")
-                                              [Data.OpenDataTable.InputKey
-                                                 (Data.OpenDataTable.InputInfo
+                                              [InputKey
+                                                 (InputInfo
                                                     "user_id"
                                                     Nothing
-                                                    Data.OpenDataTable.InputTypeString
-                                                    Data.OpenDataTable.ParamTypePath
+                                                    InputTypeString
+                                                    ParamTypePath
                                                     True
                                                     Nothing
                                                     Nothing
                                                     Nothing
                                                     Nothing
                                                     Nothing),
-                                               Data.OpenDataTable.InputKey
-                                                 (Data.OpenDataTable.InputInfo
+                                               InputKey
+                                                 (InputInfo
                                                     "access_token"
                                                     Nothing
-                                                    Data.OpenDataTable.InputTypeString
-                                                    Data.OpenDataTable.ParamTypeQuery
+                                                    InputTypeString
+                                                    ParamTypeQuery
                                                     True
                                                     Nothing
                                                     Nothing
@@ -861,11 +862,11 @@ facebookGraphUserInbox
       -> do { value_ak0L1 <- ((Control.Monad.IO.Class.liftIO
                                .
                                  ((YQL.runYQL
-                                     (Data.OpenDataTable.OpenDataTable
+                                     (OpenDataTable
                                         Nothing
                                         Nothing
                                         Nothing
-                                        (Data.OpenDataTable.Meta
+                                        (Meta
                                            (Just
                                               "\n\
                                               \      Fabian Bergmark\n\
@@ -878,33 +879,33 @@ facebookGraphUserInbox
                                            Nothing
                                            [])
                                         Nothing
-                                        [Data.OpenDataTable.SelectBinding
-                                           (Data.OpenDataTable.Select
+                                        [SelectBinding
+                                           (Select
                                               Nothing
-                                              (Just Data.OpenDataTable.ProductJSON)
+                                              (Just ProductJSON)
                                               Nothing
                                               (Just
                                                  "\n\
                                                  \          https://graph.facebook.com/v2.2/{user_id}/inbox\n\
                                                  \        ")
-                                              [Data.OpenDataTable.InputKey
-                                                 (Data.OpenDataTable.InputInfo
+                                              [InputKey
+                                                 (InputInfo
                                                     "user_id"
                                                     Nothing
-                                                    Data.OpenDataTable.InputTypeString
-                                                    Data.OpenDataTable.ParamTypePath
+                                                    InputTypeString
+                                                    ParamTypePath
                                                     True
                                                     Nothing
                                                     Nothing
                                                     Nothing
                                                     Nothing
                                                     Nothing),
-                                               Data.OpenDataTable.InputKey
-                                                 (Data.OpenDataTable.InputInfo
+                                               InputKey
+                                                 (InputInfo
                                                     "access_token"
                                                     Nothing
-                                                    Data.OpenDataTable.InputTypeString
-                                                    Data.OpenDataTable.ParamTypeQuery
+                                                    InputTypeString
+                                                    ParamTypeQuery
                                                     True
                                                     Nothing
                                                     Nothing
@@ -938,11 +939,11 @@ facebookGraphUserLinks
       -> do { value_ak0L4 <- ((Control.Monad.IO.Class.liftIO
                                .
                                  ((YQL.runYQL
-                                     (Data.OpenDataTable.OpenDataTable
+                                     (OpenDataTable
                                         Nothing
                                         Nothing
                                         Nothing
-                                        (Data.OpenDataTable.Meta
+                                        (Meta
                                            (Just
                                               "\n\
                                               \      Fabian Bergmark\n\
@@ -955,33 +956,33 @@ facebookGraphUserLinks
                                            Nothing
                                            [])
                                         Nothing
-                                        [Data.OpenDataTable.SelectBinding
-                                           (Data.OpenDataTable.Select
+                                        [SelectBinding
+                                           (Select
                                               Nothing
-                                              (Just Data.OpenDataTable.ProductJSON)
+                                              (Just ProductJSON)
                                               Nothing
                                               (Just
                                                  "\n\
                                                  \          https://graph.facebook.com/v2.2/{user_id}/links\n\
                                                  \        ")
-                                              [Data.OpenDataTable.InputKey
-                                                 (Data.OpenDataTable.InputInfo
+                                              [InputKey
+                                                 (InputInfo
                                                     "user_id"
                                                     Nothing
-                                                    Data.OpenDataTable.InputTypeString
-                                                    Data.OpenDataTable.ParamTypePath
+                                                    InputTypeString
+                                                    ParamTypePath
                                                     True
                                                     Nothing
                                                     Nothing
                                                     Nothing
                                                     Nothing
                                                     Nothing),
-                                               Data.OpenDataTable.InputKey
-                                                 (Data.OpenDataTable.InputInfo
+                                               InputKey
+                                                 (InputInfo
                                                     "access_token"
                                                     Nothing
-                                                    Data.OpenDataTable.InputTypeString
-                                                    Data.OpenDataTable.ParamTypeQuery
+                                                    InputTypeString
+                                                    ParamTypeQuery
                                                     True
                                                     Nothing
                                                     Nothing
@@ -1015,11 +1016,11 @@ facebookGraphUserPhotos
       -> do { value_ak0L7 <- ((Control.Monad.IO.Class.liftIO
                                .
                                  ((YQL.runYQL
-                                     (Data.OpenDataTable.OpenDataTable
+                                     (OpenDataTable
                                         Nothing
                                         Nothing
                                         Nothing
-                                        (Data.OpenDataTable.Meta
+                                        (Meta
                                            (Just
                                               "\n\
                                               \      Fabian Bergmark\n\
@@ -1032,33 +1033,33 @@ facebookGraphUserPhotos
                                            Nothing
                                            [])
                                         Nothing
-                                        [Data.OpenDataTable.SelectBinding
-                                           (Data.OpenDataTable.Select
+                                        [SelectBinding
+                                           (Select
                                               Nothing
-                                              (Just Data.OpenDataTable.ProductJSON)
+                                              (Just ProductJSON)
                                               Nothing
                                               (Just
                                                  "\n\
                                                  \          https://graph.facebook.com/v2.2/{user_id}/photos\n\
                                                  \        ")
-                                              [Data.OpenDataTable.InputKey
-                                                 (Data.OpenDataTable.InputInfo
+                                              [InputKey
+                                                 (InputInfo
                                                     "user_id"
                                                     Nothing
-                                                    Data.OpenDataTable.InputTypeString
-                                                    Data.OpenDataTable.ParamTypePath
+                                                    InputTypeString
+                                                    ParamTypePath
                                                     True
                                                     Nothing
                                                     Nothing
                                                     Nothing
                                                     Nothing
                                                     Nothing),
-                                               Data.OpenDataTable.InputKey
-                                                 (Data.OpenDataTable.InputInfo
+                                               InputKey
+                                                 (InputInfo
                                                     "access_token"
                                                     Nothing
-                                                    Data.OpenDataTable.InputTypeString
-                                                    Data.OpenDataTable.ParamTypeQuery
+                                                    InputTypeString
+                                                    ParamTypeQuery
                                                     True
                                                     Nothing
                                                     Nothing
@@ -1092,11 +1093,11 @@ facebookGraphUserPhotosuploaded
       -> do { value_ak0La <- ((Control.Monad.IO.Class.liftIO
                                .
                                  ((YQL.runYQL
-                                     (Data.OpenDataTable.OpenDataTable
+                                     (OpenDataTable
                                         Nothing
                                         Nothing
                                         Nothing
-                                        (Data.OpenDataTable.Meta
+                                        (Meta
                                            (Just
                                               "\n\
                                               \      Fabian Bergmark\n\
@@ -1111,33 +1112,33 @@ facebookGraphUserPhotosuploaded
                                             \      SELECT * FROM {table} WHERE user_id=\"me\" AND access_token=\"CAAFUtF57FWIBABsDzU4Te7HDwHZBxZCB2gKYlVZAfg3qFaYxqHCq7E2YygHDOqZC3wrYDciK0tdDI1kgECAlblWFHZBjbG3qaNWj8MZAXPfnkInwvIPMmikuOOJrXoClqqcWDZAL7WWpoShEGc0JChHXao2FBsGmhsmOnycnNBomZAm3Hnzq8X1qXpR6A6ll3loWp51YXJ3VvAZDZD\"\n\
                                             \    "])
                                         Nothing
-                                        [Data.OpenDataTable.SelectBinding
-                                           (Data.OpenDataTable.Select
+                                        [SelectBinding
+                                           (Select
                                               Nothing
-                                              (Just Data.OpenDataTable.ProductJSON)
+                                              (Just ProductJSON)
                                               Nothing
                                               (Just
                                                  "\n\
                                                  \          https://graph.facebook.com/{user_id}/photos/uploaded\n\
                                                  \        ")
-                                              [Data.OpenDataTable.InputKey
-                                                 (Data.OpenDataTable.InputInfo
+                                              [InputKey
+                                                 (InputInfo
                                                     "user_id"
                                                     Nothing
-                                                    Data.OpenDataTable.InputTypeString
-                                                    Data.OpenDataTable.ParamTypePath
+                                                    InputTypeString
+                                                    ParamTypePath
                                                     True
                                                     Nothing
                                                     Nothing
                                                     Nothing
                                                     Nothing
                                                     Nothing),
-                                               Data.OpenDataTable.InputKey
-                                                 (Data.OpenDataTable.InputInfo
+                                               InputKey
+                                                 (InputInfo
                                                     "access_token"
                                                     Nothing
-                                                    Data.OpenDataTable.InputTypeString
-                                                    Data.OpenDataTable.ParamTypeQuery
+                                                    InputTypeString
+                                                    ParamTypeQuery
                                                     True
                                                     Nothing
                                                     Nothing
@@ -1171,11 +1172,11 @@ facebookGraphUserPokes
       -> do { value_ak0Ld <- ((Control.Monad.IO.Class.liftIO
                                .
                                  ((YQL.runYQL
-                                     (Data.OpenDataTable.OpenDataTable
+                                     (OpenDataTable
                                         Nothing
                                         Nothing
                                         Nothing
-                                        (Data.OpenDataTable.Meta
+                                        (Meta
                                            (Just
                                               "\n\
                                               \      Fabian Bergmark\n\
@@ -1188,33 +1189,33 @@ facebookGraphUserPokes
                                            Nothing
                                            [])
                                         Nothing
-                                        [Data.OpenDataTable.SelectBinding
-                                           (Data.OpenDataTable.Select
+                                        [SelectBinding
+                                           (Select
                                               Nothing
-                                              (Just Data.OpenDataTable.ProductJSON)
+                                              (Just ProductJSON)
                                               Nothing
                                               (Just
                                                  "\n\
                                                  \          https://graph.facebook.com/v2.2/{user_id}/pokes\n\
                                                  \        ")
-                                              [Data.OpenDataTable.InputKey
-                                                 (Data.OpenDataTable.InputInfo
+                                              [InputKey
+                                                 (InputInfo
                                                     "user_id"
                                                     Nothing
-                                                    Data.OpenDataTable.InputTypeString
-                                                    Data.OpenDataTable.ParamTypePath
+                                                    InputTypeString
+                                                    ParamTypePath
                                                     True
                                                     Nothing
                                                     Nothing
                                                     Nothing
                                                     Nothing
                                                     Nothing),
-                                               Data.OpenDataTable.InputKey
-                                                 (Data.OpenDataTable.InputInfo
+                                               InputKey
+                                                 (InputInfo
                                                     "access_token"
                                                     Nothing
-                                                    Data.OpenDataTable.InputTypeString
-                                                    Data.OpenDataTable.ParamTypeQuery
+                                                    InputTypeString
+                                                    ParamTypeQuery
                                                     True
                                                     Nothing
                                                     Nothing
@@ -1248,11 +1249,11 @@ facebookGraphUserPosts
       -> do { value_ak0Lg <- ((Control.Monad.IO.Class.liftIO
                                .
                                  ((YQL.runYQL
-                                     (Data.OpenDataTable.OpenDataTable
+                                     (OpenDataTable
                                         Nothing
                                         Nothing
                                         Nothing
-                                        (Data.OpenDataTable.Meta
+                                        (Meta
                                            (Just
                                               "\n\
                                               \      Fabian Bergmark\n\
@@ -1265,33 +1266,33 @@ facebookGraphUserPosts
                                            Nothing
                                            [])
                                         Nothing
-                                        [Data.OpenDataTable.SelectBinding
-                                           (Data.OpenDataTable.Select
+                                        [SelectBinding
+                                           (Select
                                               Nothing
-                                              (Just Data.OpenDataTable.ProductJSON)
+                                              (Just ProductJSON)
                                               Nothing
                                               (Just
                                                  "\n\
                                                  \          https://graph.facebook.com/v2.2/{user_id}/posts\n\
                                                  \        ")
-                                              [Data.OpenDataTable.InputKey
-                                                 (Data.OpenDataTable.InputInfo
+                                              [InputKey
+                                                 (InputInfo
                                                     "user_id"
                                                     Nothing
-                                                    Data.OpenDataTable.InputTypeString
-                                                    Data.OpenDataTable.ParamTypePath
+                                                    InputTypeString
+                                                    ParamTypePath
                                                     True
                                                     Nothing
                                                     Nothing
                                                     Nothing
                                                     Nothing
                                                     Nothing),
-                                               Data.OpenDataTable.InputKey
-                                                 (Data.OpenDataTable.InputInfo
+                                               InputKey
+                                                 (InputInfo
                                                     "access_token"
                                                     Nothing
-                                                    Data.OpenDataTable.InputTypeString
-                                                    Data.OpenDataTable.ParamTypeQuery
+                                                    InputTypeString
+                                                    ParamTypeQuery
                                                     True
                                                     Nothing
                                                     Nothing
@@ -1325,11 +1326,11 @@ facebookGraphUserStatuses
       -> do { value_ak0Lj <- ((Control.Monad.IO.Class.liftIO
                                .
                                  ((YQL.runYQL
-                                     (Data.OpenDataTable.OpenDataTable
+                                     (OpenDataTable
                                         Nothing
                                         Nothing
                                         Nothing
-                                        (Data.OpenDataTable.Meta
+                                        (Meta
                                            (Just
                                               "\n\
                                               \      Fabian Bergmark\n\
@@ -1342,33 +1343,33 @@ facebookGraphUserStatuses
                                            Nothing
                                            [])
                                         Nothing
-                                        [Data.OpenDataTable.SelectBinding
-                                           (Data.OpenDataTable.Select
+                                        [SelectBinding
+                                           (Select
                                               Nothing
-                                              (Just Data.OpenDataTable.ProductJSON)
+                                              (Just ProductJSON)
                                               Nothing
                                               (Just
                                                  "\n\
                                                  \          https://graph.facebook.com/v2.2/{user_id}/statuses\n\
                                                  \        ")
-                                              [Data.OpenDataTable.InputKey
-                                                 (Data.OpenDataTable.InputInfo
+                                              [InputKey
+                                                 (InputInfo
                                                     "user_id"
                                                     Nothing
-                                                    Data.OpenDataTable.InputTypeString
-                                                    Data.OpenDataTable.ParamTypePath
+                                                    InputTypeString
+                                                    ParamTypePath
                                                     True
                                                     Nothing
                                                     Nothing
                                                     Nothing
                                                     Nothing
                                                     Nothing),
-                                               Data.OpenDataTable.InputKey
-                                                 (Data.OpenDataTable.InputInfo
+                                               InputKey
+                                                 (InputInfo
                                                     "access_token"
                                                     Nothing
-                                                    Data.OpenDataTable.InputTypeString
-                                                    Data.OpenDataTable.ParamTypeQuery
+                                                    InputTypeString
+                                                    ParamTypeQuery
                                                     True
                                                     Nothing
                                                     Nothing
@@ -1402,11 +1403,11 @@ facebookGraphUserTagged
       -> do { value_ak0Lm <- ((Control.Monad.IO.Class.liftIO
                                .
                                  ((YQL.runYQL
-                                     (Data.OpenDataTable.OpenDataTable
+                                     (OpenDataTable
                                         Nothing
                                         Nothing
                                         Nothing
-                                        (Data.OpenDataTable.Meta
+                                        (Meta
                                            (Just
                                               "\n\
                                               \      Fabian Bergmark\n\
@@ -1419,33 +1420,33 @@ facebookGraphUserTagged
                                            Nothing
                                            [])
                                         Nothing
-                                        [Data.OpenDataTable.SelectBinding
-                                           (Data.OpenDataTable.Select
+                                        [SelectBinding
+                                           (Select
                                               Nothing
-                                              (Just Data.OpenDataTable.ProductJSON)
+                                              (Just ProductJSON)
                                               Nothing
                                               (Just
                                                  "\n\
                                                  \          https://graph.facebook.com/v2.2/{user_id}/tagged\n\
                                                  \        ")
-                                              [Data.OpenDataTable.InputKey
-                                                 (Data.OpenDataTable.InputInfo
+                                              [InputKey
+                                                 (InputInfo
                                                     "user_id"
                                                     Nothing
-                                                    Data.OpenDataTable.InputTypeString
-                                                    Data.OpenDataTable.ParamTypePath
+                                                    InputTypeString
+                                                    ParamTypePath
                                                     True
                                                     Nothing
                                                     Nothing
                                                     Nothing
                                                     Nothing
                                                     Nothing),
-                                               Data.OpenDataTable.InputKey
-                                                 (Data.OpenDataTable.InputInfo
+                                               InputKey
+                                                 (InputInfo
                                                     "access_token"
                                                     Nothing
-                                                    Data.OpenDataTable.InputTypeString
-                                                    Data.OpenDataTable.ParamTypeQuery
+                                                    InputTypeString
+                                                    ParamTypeQuery
                                                     True
                                                     Nothing
                                                     Nothing
@@ -1479,11 +1480,11 @@ krisinformationFeed
       -> do { value_ak0Lp <- ((Control.Monad.IO.Class.liftIO
                                .
                                  ((YQL.runYQL
-                                     (Data.OpenDataTable.OpenDataTable
+                                     (OpenDataTable
                                         Nothing
                                         Nothing
                                         Nothing
-                                        (Data.OpenDataTable.Meta
+                                        (Meta
                                            (Just "Fabian Bergmark")
                                            Nothing
                                            (Just
@@ -1491,10 +1492,10 @@ krisinformationFeed
                                            Nothing
                                            ["select * from {table}"])
                                         Nothing
-                                        [Data.OpenDataTable.SelectBinding
-                                           (Data.OpenDataTable.Select
+                                        [SelectBinding
+                                           (Select
                                               Nothing
-                                              (Just Data.OpenDataTable.ProductJSON)
+                                              (Just ProductJSON)
                                               Nothing
                                               (Just
                                                  "http://api.krisinformation.se/v1/feed?format=json")
@@ -1526,11 +1527,11 @@ smhiPmp
       -> do { value_ak0Ls <- ((Control.Monad.IO.Class.liftIO
                                .
                                  ((YQL.runYQL
-                                     (Data.OpenDataTable.OpenDataTable
+                                     (OpenDataTable
                                         Nothing
                                         Nothing
                                         Nothing
-                                        (Data.OpenDataTable.Meta
+                                        (Meta
                                            (Just "Fabian Bergmark")
                                            Nothing
                                            (Just
@@ -1540,31 +1541,31 @@ smhiPmp
                                            Nothing
                                            ["select * from {table} where lat=\"58.59\" and lon=\"16.18\""])
                                         Nothing
-                                        [Data.OpenDataTable.SelectBinding
-                                           (Data.OpenDataTable.Select
+                                        [SelectBinding
+                                           (Select
                                               Nothing
-                                              (Just Data.OpenDataTable.ProductJSON)
+                                              (Just ProductJSON)
                                               Nothing
                                               (Just
                                                  "http://opendata-download-metfcst.smhi.se/api/category/pmp1.5g/version/1/geopoint/lat/{lat}/lon/{lon}/data.json")
-                                              [Data.OpenDataTable.InputKey
-                                                 (Data.OpenDataTable.InputInfo
+                                              [InputKey
+                                                 (InputInfo
                                                     "lat"
                                                     Nothing
-                                                    Data.OpenDataTable.InputTypeString
-                                                    Data.OpenDataTable.ParamTypePath
+                                                    InputTypeString
+                                                    ParamTypePath
                                                     True
                                                     Nothing
                                                     Nothing
                                                     Nothing
                                                     Nothing
                                                     Nothing),
-                                               Data.OpenDataTable.InputKey
-                                                 (Data.OpenDataTable.InputInfo
+                                               InputKey
+                                                 (InputInfo
                                                     "lon"
                                                     Nothing
-                                                    Data.OpenDataTable.InputTypeString
-                                                    Data.OpenDataTable.ParamTypePath
+                                                    InputTypeString
+                                                    ParamTypePath
                                                     True
                                                     Nothing
                                                     Nothing

@@ -8,6 +8,7 @@ m4_include([m4/ax_jni_include_dir.m4])
 AC_INIT(apis, 0.0.0, fabian.bergmark@gmail.com)
 AM_INIT_AUTOMAKE
 
+AC_PROG_CC
 AC_PROG_CXX
 
 AC_ENABLE_SHARED

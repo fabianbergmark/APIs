@@ -3,12 +3,10 @@ module FFI.Array where
 
 import Foreign
 
-#let alignment t = "%lu", (unsigned long)offsetof(struct {char x__; t (y__); }, y__)
-
 #include "ffi/c/lib/array.h"
 
 instance Storable a => Storable [a] where
-  alignment _ = #{alignment Array}
+  alignment _ = #{const (offsetof(struct {char x__; Array (y__); }, y__))}
   sizeOf _ = #{size Array}
   peek ptr = do
     l <- #{peek Array, length} ptr

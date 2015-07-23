@@ -41,6 +41,7 @@ writeInstanceFile arrayFuns templateExpansions = do
                 "%include HsFFI.h\n" ++
                 "%include cpp/lib/api.hpp\n" ++
                 "%include cpp/lib/array.hpp\n" ++
+                "%include cpp/lib/ghc.hpp\n" ++
                 "%include cpp/lib/maybe.hpp\n" ++
                 "%include cpp/lib/types.hpp\n" ++
                 "%include cpp/lib/void.hpp\n" ++

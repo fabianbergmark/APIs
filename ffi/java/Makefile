@@ -2,16 +2,17 @@
 
 all:
 	javac *.java
+	mkdir -p se/fbergmark/apis
+	cp *.class se/fbergmark/apis
+	cp *.java se/fbergmark/apis
+	jar cf apis.jar se
 
 doc:
 	javadoc -linksource -keywords -charset utf8 -d doc se.fbergmark.apis *.java
 
 install:
-	mkdir -p se/fbergmark/apis
-	cp *.class se/fbergmark/apis
-	jar cf apis.jar se
 	mkdir -p "$(DESTDIR)/usr/share/apis-java"
-	cp APIs.jar "$(DESTDIR)/usr/share/apis-java/apis.jar"
+	cp apis.jar "$(DESTDIR)/usr/share/apis-java/apis.jar"
 
 uninstall:
 

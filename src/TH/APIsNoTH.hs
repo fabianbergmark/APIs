@@ -18,8 +18,6 @@ import qualified Data.Data
 import qualified Data.Typeable
 import qualified Data.Aeson
 
-import TH.API
-
 import Control.Applicative
 import Control.Monad
 import Data.Map (fromList)

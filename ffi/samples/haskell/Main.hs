@@ -1,8 +1,8 @@
 import Data.Settings.YQL
 import Data.State.YQL
 import Control.Monad.Trans.API
-import TH.APIs
-import TH.YQLs
+import TH.APIsNoTH
+import TH.YQLsNoTH
 
 data S = S
 

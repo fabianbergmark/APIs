@@ -2,8 +2,8 @@ module Data.TH.API (API(..), APIInput(..), APIOutput(..)) where
 
 import Language.Haskell.TH
 
-import Data.OpenDataTable
-import Data.JSON.Schema
+import Data.OpenDataTableNoTH
+import Data.JSON.SchemaNoTH
 
 data API =
   API
