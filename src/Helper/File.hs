@@ -1,8 +1,8 @@
 {-# LANGUAGE BangPatterns #-}
 
-module Helper.File(findAPIs, loadAPI) where
-
-import Prelude
+module Helper.File
+       ( findAPIs,
+         loadAPI ) where
 
 import qualified Data.Aeson as Aeson
 import Data.Maybe
@@ -19,8 +19,8 @@ import System.FilePath.Find
 
 import Text.XML.HXT.Core (runX, readString, withRemoveWS, yes, (>>>))
 
-import Data.OpenDataTableNoTH
-import Data.JSON.SchemaNoTH
+import Data.OpenDataTable
+import Data.JSON.Schema
 import Data.OpenDataTable.Parser
 
 findAPIs :: FilePath -> IO [(FilePath, FilePath)]

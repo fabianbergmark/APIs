@@ -1,4 +1,5 @@
-{-# LANGUAGE TemplateHaskell #-}
+{-# LANGUAGE CPP,
+             TemplateHaskell #-}
 
 module TH.HSC
        ( generateHSC
@@ -25,6 +26,7 @@ generateHSCs apis = do
     writeHeaderFile $ join structss
     writeCppHeaderFile $ join cppStructss
     writeHSCFile $ join instancess
+    writeHSCNoTHFile $ join instancess
 
 generateHSC :: API -> Q ()
 generateHSC api = do
@@ -47,8 +49,8 @@ writeHeaderFile structs = do
                "#include \"void.h\""
       toDecl = \(tName, fields) ->
                 "typedef struct " ++ tName ++ " {\n" ++
-               intercalate "\n" (map (\(t, n) -> t ++ " " ++ n ++ ";") fields)
-               ++ " } " ++ tName ++ ";"
+                intercalate "\n" (map (\(t, n) -> t ++ " " ++ n ++ ";") fields) ++
+                " } " ++ tName ++ ";"
       decls = intercalate "\n\n" $ reverse $ map toDecl structs
       endif = "#endif"
       header = ifndef ++ "\n\n" ++ decls ++ "\n\n" ++ endif
@@ -64,6 +66,10 @@ writeCppHeaderFile structs = do
                "#include \"void.hpp\""
       toDecl = \(tName, fields) ->
                 "typedef struct " ++ tName ++ " {\n" ++
+                tName ++ "() {};\n" ++
+                (if not (null fields)
+                 then tName ++ "(" ++ intercalate "," (map (\(t, n) -> t ++ " " ++ n) fields) ++ ") : " ++ intercalate ", " (map (\(_, n) -> n ++ "(" ++ n ++ ")") fields) ++ " {};\n"
+                 else "") ++
                intercalate "\n" (map (\(t, n) -> t ++ " " ++ n ++ ";") fields)
                ++ " } " ++ tName ++ ";"
       decls = intercalate "\n\n" $ reverse $ map toDecl structs
@@ -84,12 +90,32 @@ writeHSCFile instances = do
         "import FFI.Maybe()\n" ++
         "import FFI.Void()\n" ++
         "\n" ++
-        "import TH.APIsNoTH\n" ++
+        "import TH.APIs\n" ++
         "\n" ++
         "#include \"ffi/c/lib/types.h\"\n" ++
         "\n"
       hsc = header ++ instances
   writeFile "src/FFI/Types.hsc" hsc
+
+writeHSCNoTHFile :: String -> IO ()
+writeHSCNoTHFile instances = do
+  let header =
+        "{-# LANGUAGE ForeignFunctionInterface #-}\n" ++
+        "module FFI.TypesNoTH where\n" ++
+        "\n" ++
+        "import Foreign\n" ++
+        "import Foreign.C.String\n" ++
+        "\n" ++
+        "import FFI.Array()\n" ++
+        "import FFI.Maybe()\n" ++
+        "import FFI.Void()\n" ++
+        "\n" ++
+        "import TH.APIsNoTH\n" ++
+        "\n" ++
+        "#include \"ffi/c/lib/types.h\"\n" ++
+        "\n"
+      hsc = header ++ instances
+  writeFile "src/FFI/TypesNoTH.hsc" hsc
 
 generateHeaderStructs :: API -> Q [(String, [(String, String)])]
 generateHeaderStructs (API

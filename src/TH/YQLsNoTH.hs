@@ -9,8 +9,9 @@ import Language.Haskell.TH
 import TH.APIsNoTH
 import qualified YQL
 import qualified Data.TH.Object
-import Data.OpenDataTableNoTH
-import qualified Data.OpenDataTableNoTH
+import Data.OpenDataTable
+import Data.OpenDataTable.LiftNoTH ()
+import qualified Data.OpenDataTable
 import qualified Data.Settings.YQL
 import qualified Data.State.YQL
 import qualified Control.Monad.Trans.API

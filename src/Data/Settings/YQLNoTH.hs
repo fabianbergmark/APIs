@@ -1,12 +1,12 @@
 {-# LANGUAGE OverloadedStrings #-}
 
-module Data.Settings.YQL
+module Data.Settings.YQLNoTH
        ( YQLSettings(..) ) where
 
 import Control.Applicative (pure)
 import Data.Aeson
 
-import Data.JSON.Schema
+import Data.JSON.SchemaNoTH
 
 data YQLSettings =
   YQLSettings

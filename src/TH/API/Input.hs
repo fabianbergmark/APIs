@@ -21,7 +21,7 @@ import System.FilePath (takeBaseName)
 
 import Helper.Name
 
-import Data.OpenDataTableNoTH
+import Data.OpenDataTable
 
 import Data.TH.API
 import Data.TH.Convert

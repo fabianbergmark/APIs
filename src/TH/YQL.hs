@@ -1,4 +1,5 @@
-{-# LANGUAGE RecordWildCards,
+{-# LANGUAGE CPP,
+             RecordWildCards,
              ScopedTypeVariables,
              TemplateHaskell #-}
 
@@ -20,6 +21,7 @@ import System.Log.Logger
 
 import Control.Monad.Trans.API
 
+import Data.OpenDataTable.Lift ()
 import Data.JSON.Void ()
 import Data.Settings.YQL
 import Data.State.YQL
@@ -59,12 +61,22 @@ generateYQLPipe base API {..} = do
       m = mkName "m"
       a = mkName "a"
       t = AppT (AppT ArrowT (ConT ''YQLSettings)) (AppT (AppT ArrowT inType) (AppT (AppT (AppT (ConT ''APIT) (VarT s)) (VarT m)) (AppT (ConT ''Maybe) outType)))
-      t' = ForallT
+
+#if 1
+  let t' = ForallT
+           [ PlainTV s, PlainTV m, PlainTV a ]
+           [ AppT (ConT ''MonadIO) (VarT m)
+           , AppT (ConT ''MonadThrow) (VarT m)
+           , AppT (ConT ''YQLState) (VarT s) ]
+           t
+#else
+  let t' = ForallT
            [ PlainTV s, PlainTV m, PlainTV a ]
            [ ClassP ''MonadIO [VarT m]
            , ClassP ''MonadThrow [VarT m]
            , ClassP ''YQLState [VarT s] ]
            t
+#endif
       sig = SigD name t'
 
   body <-

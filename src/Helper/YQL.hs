@@ -1,8 +1,6 @@
 module Helper.YQL
        ( yqlURI ) where
 
-import Prelude
-
 import Data.List.Split
 import System.FilePath (takeFileName)
 

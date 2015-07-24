@@ -2,7 +2,6 @@
 
 module Data.JSON.Void where
 
-import Prelude
 import Data.Aeson
 import Data.Data
 

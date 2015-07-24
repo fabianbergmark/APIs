@@ -19,7 +19,7 @@ import System.FilePath (takeBaseName)
 
 import Data.TH.API
 import Data.JSON.Void
-import Data.JSON.SchemaNoTH
+import Data.JSON.Schema
 
 import Helper.Name
 
