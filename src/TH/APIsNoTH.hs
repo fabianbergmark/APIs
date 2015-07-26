@@ -10,7 +10,6 @@ module TH.APIsNoTH where
 import Language.Haskell.TH
 
 import qualified Data.TH.Object
-import qualified Data.TH.API as TH
 import qualified Data.TH.Convert
 
 import qualified Data.Maybe

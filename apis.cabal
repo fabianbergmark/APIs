@@ -111,6 +111,7 @@ library
                    , hslogger             == 1.*
                    , mtl                  == 2.*
                    , opendatatable        == 0.*
+                   , template-haskell     == 2.*
                    , text                 == 1.*
                    , time                 == 1.*
                    , transformers         == 0.*

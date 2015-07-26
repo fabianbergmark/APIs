@@ -3,12 +3,12 @@
 module TH.FFIsNoTH where
 
 import Control.Monad.Trans.API (runAPIT)
-import Data.Settings.YQL
+import Data.Settings.YQLNoTH
 import Data.State.YQL
-import FFI.Types ()
+import FFI.TypesNoTH ()
+import FFI.Data.Settings.YQLNoTH
 import TH.APIsNoTH
 import TH.YQLsNoTH
-import TH.FFI
 
 import Control.Applicative ((<$>))
 import Foreign.Storable
@@ -22,7 +22,7 @@ instance YQLState State where
 
 -- Src/TH/FFIs.hs:(15,3)-(26,14): Splicing declarations
 dropboxFiles_ffi ::
-  Ptr Data.Settings.YQL.YQLSettings
+  Ptr YQLSettings
   -> Ptr InputDropboxFiles
      -> IO (Ptr (Maybe OutputDropboxFiles))
 dropboxFiles_ffi =
@@ -33,11 +33,11 @@ dropboxFiles_ffi =
       ret_a4VtB <- fst <$> (runAPIT State action_a4VtA)
       new ret_a4VtB) dropboxFiles
 foreign export ccall "dropboxFiles_ffi" dropboxFiles_ffi
-  :: Ptr Data.Settings.YQL.YQLSettings
+  :: Ptr YQLSettings
      -> Ptr InputDropboxFiles
         -> IO (Ptr (Maybe OutputDropboxFiles))
 dropboxFilesPut_ffi ::
-  Ptr Data.Settings.YQL.YQLSettings
+  Ptr YQLSettings
   -> Ptr InputDropboxFilesPut
      -> IO (Ptr (Maybe OutputDropboxFilesPut))
 dropboxFilesPut_ffi
@@ -48,11 +48,11 @@ dropboxFilesPut_ffi
         ret_a4VtI <- fst <$> (runAPIT State action_a4VtH)
         new ret_a4VtI) dropboxFilesPut
 foreign export ccall "dropboxFilesPut_ffi" dropboxFilesPut_ffi
-  :: Ptr Data.Settings.YQL.YQLSettings
+  :: Ptr YQLSettings
      -> Ptr InputDropboxFilesPut
         -> IO (Ptr (Maybe OutputDropboxFilesPut))
 dropboxMetadata_ffi ::
-  Ptr Data.Settings.YQL.YQLSettings
+  Ptr YQLSettings
   -> Ptr InputDropboxMetadata
      -> IO (Ptr (Maybe OutputDropboxMetadata))
 dropboxMetadata_ffi
@@ -63,11 +63,11 @@ dropboxMetadata_ffi
     ret_a4VtP <- fst <$> (runAPIT State action_a4VtO)
     new ret_a4VtP) dropboxMetadata
 foreign export ccall "dropboxMetadata_ffi" dropboxMetadata_ffi
-  :: Ptr Data.Settings.YQL.YQLSettings
+  :: Ptr YQLSettings
      -> Ptr InputDropboxMetadata
         -> IO (Ptr (Maybe OutputDropboxMetadata))
 facebookGraphUserFeed_ffi ::
-  Ptr Data.Settings.YQL.YQLSettings
+  Ptr YQLSettings
   -> Ptr InputFacebookGraphUserFeed
      -> IO (Ptr (Maybe OutputFacebookGraphUserFeed))
 facebookGraphUserFeed_ffi
@@ -78,11 +78,11 @@ facebookGraphUserFeed_ffi
         ret_a4VtW <- fst <$> (runAPIT State action_a4VtV)
         new ret_a4VtW) facebookGraphUserFeed
 foreign export ccall "facebookGraphUserFeed_ffi" facebookGraphUserFeed_ffi
-  :: Ptr Data.Settings.YQL.YQLSettings
+  :: Ptr YQLSettings
      -> Ptr InputFacebookGraphUserFeed
         -> IO (Ptr (Maybe OutputFacebookGraphUserFeed))
 facebookGraphUserFeedPost_ffi ::
-  Ptr Data.Settings.YQL.YQLSettings
+  Ptr YQLSettings
   -> Ptr InputFacebookGraphUserFeedPost
      -> IO (Ptr (Maybe OutputFacebookGraphUserFeedPost))
 facebookGraphUserFeedPost_ffi
@@ -93,11 +93,11 @@ facebookGraphUserFeedPost_ffi
     ret_a4Vu3 <- fst <$> (runAPIT State action_a4Vu2)
     new ret_a4Vu3) facebookGraphUserFeedPost
 foreign export ccall "facebookGraphUserFeedPost_ffi" facebookGraphUserFeedPost_ffi
-  :: Ptr Data.Settings.YQL.YQLSettings
+  :: Ptr YQLSettings
      -> Ptr InputFacebookGraphUserFeedPost
         -> IO (Ptr (Maybe OutputFacebookGraphUserFeedPost))
 facebookGraphUserFriendlists_ffi ::
-  Ptr Data.Settings.YQL.YQLSettings
+  Ptr YQLSettings
   -> Ptr InputFacebookGraphUserFriendlists
      -> IO (Ptr (Maybe OutputFacebookGraphUserFriendlists))
 facebookGraphUserFriendlists_ffi
@@ -109,11 +109,11 @@ facebookGraphUserFriendlists_ffi
         new ret_a4Vua)
       facebookGraphUserFriendlists
 foreign export ccall "facebookGraphUserFriendlists_ffi" facebookGraphUserFriendlists_ffi
-  :: Ptr Data.Settings.YQL.YQLSettings
+  :: Ptr YQLSettings
      -> Ptr InputFacebookGraphUserFriendlists
         -> IO (Ptr (Maybe OutputFacebookGraphUserFriendlists))
 facebookGraphUserFriends_ffi ::
-  Ptr Data.Settings.YQL.YQLSettings
+  Ptr YQLSettings
   -> Ptr InputFacebookGraphUserFriends
      -> IO (Ptr (Maybe OutputFacebookGraphUserFriends))
 facebookGraphUserFriends_ffi
@@ -124,11 +124,11 @@ facebookGraphUserFriends_ffi
         ret_a4Vuh <- fst <$> (runAPIT State action_a4Vug)
         new ret_a4Vuh) facebookGraphUserFriends
 foreign export ccall "facebookGraphUserFriends_ffi" facebookGraphUserFriends_ffi
-  :: Ptr Data.Settings.YQL.YQLSettings
+  :: Ptr YQLSettings
      -> Ptr InputFacebookGraphUserFriends
         -> IO (Ptr (Maybe OutputFacebookGraphUserFriends))
 facebookGraphUserInbox_ffi ::
-  Ptr Data.Settings.YQL.YQLSettings
+  Ptr YQLSettings
   -> Ptr InputFacebookGraphUserInbox
      -> IO (Ptr (Maybe OutputFacebookGraphUserInbox))
 facebookGraphUserInbox_ffi
@@ -139,11 +139,11 @@ facebookGraphUserInbox_ffi
         ret_a4Vuo <- fst <$> (runAPIT State action_a4Vun)
         new ret_a4Vuo) facebookGraphUserInbox
 foreign export ccall "facebookGraphUserInbox_ffi" facebookGraphUserInbox_ffi
-  :: Ptr Data.Settings.YQL.YQLSettings
+  :: Ptr YQLSettings
      -> Ptr InputFacebookGraphUserInbox
         -> IO (Ptr (Maybe OutputFacebookGraphUserInbox))
 facebookGraphUserLinks_ffi ::
-  Ptr Data.Settings.YQL.YQLSettings
+  Ptr YQLSettings
   -> Ptr InputFacebookGraphUserLinks
      -> IO (Ptr (Maybe OutputFacebookGraphUserLinks))
 facebookGraphUserLinks_ffi
@@ -154,11 +154,11 @@ facebookGraphUserLinks_ffi
         ret_a4Vuv <- fst <$> (runAPIT State action_a4Vuu)
         new ret_a4Vuv) facebookGraphUserLinks
 foreign export ccall "facebookGraphUserLinks_ffi" facebookGraphUserLinks_ffi
-  :: Ptr Data.Settings.YQL.YQLSettings
+  :: Ptr YQLSettings
      -> Ptr InputFacebookGraphUserLinks
         -> IO (Ptr (Maybe OutputFacebookGraphUserLinks))
 facebookGraphUserPhotos_ffi ::
-  Ptr Data.Settings.YQL.YQLSettings
+  Ptr YQLSettings
   -> Ptr InputFacebookGraphUserPhotos
      -> IO (Ptr (Maybe OutputFacebookGraphUserPhotos))
 facebookGraphUserPhotos_ffi
@@ -169,11 +169,11 @@ facebookGraphUserPhotos_ffi
         ret_a4VuC <- fst <$> (runAPIT State action_a4VuB)
         new ret_a4VuC) facebookGraphUserPhotos
 foreign export ccall "facebookGraphUserPhotos_ffi" facebookGraphUserPhotos_ffi
-  :: Ptr Data.Settings.YQL.YQLSettings
+  :: Ptr YQLSettings
      -> Ptr InputFacebookGraphUserPhotos
         -> IO (Ptr (Maybe OutputFacebookGraphUserPhotos))
 facebookGraphUserPhotosuploaded_ffi ::
-  Ptr Data.Settings.YQL.YQLSettings
+  Ptr YQLSettings
   -> Ptr InputFacebookGraphUserPhotosuploaded
      -> IO (Ptr (Maybe OutputFacebookGraphUserPhotosuploaded))
 facebookGraphUserPhotosuploaded_ffi
@@ -184,11 +184,11 @@ facebookGraphUserPhotosuploaded_ffi
         ret_a4VuJ <- fst <$> (runAPIT State action_a4VuI)
         new ret_a4VuJ) facebookGraphUserPhotosuploaded
 foreign export ccall "facebookGraphUserPhotosuploaded_ffi" facebookGraphUserPhotosuploaded_ffi
-  :: Ptr Data.Settings.YQL.YQLSettings
+  :: Ptr YQLSettings
      -> Ptr InputFacebookGraphUserPhotosuploaded
         -> IO (Ptr (Maybe OutputFacebookGraphUserPhotosuploaded))
 facebookGraphUserPokes_ffi ::
-  Ptr Data.Settings.YQL.YQLSettings
+  Ptr YQLSettings
   -> Ptr InputFacebookGraphUserPokes
      -> IO (Ptr (Maybe OutputFacebookGraphUserPokes))
 facebookGraphUserPokes_ffi
@@ -199,11 +199,11 @@ facebookGraphUserPokes_ffi
         ret_a4VuQ <- fst <$> (runAPIT State action_a4VuP)
         new ret_a4VuQ) facebookGraphUserPokes
 foreign export ccall "facebookGraphUserPokes_ffi" facebookGraphUserPokes_ffi
-  :: Ptr Data.Settings.YQL.YQLSettings
+  :: Ptr YQLSettings
      -> Ptr InputFacebookGraphUserPokes
         -> IO (Ptr (Maybe OutputFacebookGraphUserPokes))
 facebookGraphUserPosts_ffi ::
-  Ptr Data.Settings.YQL.YQLSettings
+  Ptr YQLSettings
   -> Ptr InputFacebookGraphUserPosts
      -> IO (Ptr (Maybe OutputFacebookGraphUserPosts))
 facebookGraphUserPosts_ffi
@@ -214,11 +214,11 @@ facebookGraphUserPosts_ffi
         ret_a4VuX <- fst <$> (runAPIT State action_a4VuW)
         new ret_a4VuX) facebookGraphUserPosts
 foreign export ccall "facebookGraphUserPosts_ffi" facebookGraphUserPosts_ffi
-  :: Ptr Data.Settings.YQL.YQLSettings
+  :: Ptr YQLSettings
      -> Ptr InputFacebookGraphUserPosts
         -> IO (Ptr (Maybe OutputFacebookGraphUserPosts))
 facebookGraphUserStatuses_ffi ::
-  Ptr Data.Settings.YQL.YQLSettings
+  Ptr YQLSettings
   -> Ptr InputFacebookGraphUserStatuses
      -> IO (Ptr (Maybe OutputFacebookGraphUserStatuses))
 facebookGraphUserStatuses_ffi
@@ -229,11 +229,11 @@ facebookGraphUserStatuses_ffi
         ret_a4Vv4 <- fst <$> (runAPIT State action_a4Vv3)
         new ret_a4Vv4) facebookGraphUserStatuses
 foreign export ccall "facebookGraphUserStatuses_ffi" facebookGraphUserStatuses_ffi
-  :: Ptr Data.Settings.YQL.YQLSettings
+  :: Ptr YQLSettings
      -> Ptr InputFacebookGraphUserStatuses
         -> IO (Ptr (Maybe OutputFacebookGraphUserStatuses))
 facebookGraphUserTagged_ffi ::
-  Ptr Data.Settings.YQL.YQLSettings
+  Ptr YQLSettings
   -> Ptr InputFacebookGraphUserTagged
      -> IO (Ptr (Maybe OutputFacebookGraphUserTagged))
 facebookGraphUserTagged_ffi
@@ -244,11 +244,11 @@ facebookGraphUserTagged_ffi
         ret_a4Vvb <- fst <$> (runAPIT State action_a4Vva)
         new ret_a4Vvb) facebookGraphUserTagged
 foreign export ccall "facebookGraphUserTagged_ffi" facebookGraphUserTagged_ffi
-  :: Ptr Data.Settings.YQL.YQLSettings
+  :: Ptr YQLSettings
      -> Ptr InputFacebookGraphUserTagged
         -> IO (Ptr (Maybe OutputFacebookGraphUserTagged))
 krisinformationFeed_ffi ::
-  Ptr Data.Settings.YQL.YQLSettings
+  Ptr YQLSettings
   -> Ptr InputKrisinformationFeed
      -> IO (Ptr (Maybe OutputKrisinformationFeed))
 krisinformationFeed_ffi
@@ -259,11 +259,11 @@ krisinformationFeed_ffi
         ret_a4Vvi <- fst <$> (runAPIT State action_a4Vvh)
         new ret_a4Vvi) krisinformationFeed
 foreign export ccall "krisinformationFeed_ffi" krisinformationFeed_ffi
-  :: Ptr Data.Settings.YQL.YQLSettings
+  :: Ptr YQLSettings
      -> Ptr InputKrisinformationFeed
         -> IO (Ptr (Maybe OutputKrisinformationFeed))
 smhiPmp_ffi ::
-  Ptr Data.Settings.YQL.YQLSettings
+  Ptr YQLSettings
   -> Ptr InputSmhiPmp
      -> IO (Ptr (Maybe OutputSmhiPmp))
 smhiPmp_ffi
@@ -274,6 +274,6 @@ smhiPmp_ffi
         ret_a4Vvp <- fst <$> (runAPIT State action_a4Vvo)
         new ret_a4Vvp) smhiPmp
 foreign export ccall "smhiPmp_ffi" smhiPmp_ffi
-  :: Ptr Data.Settings.YQL.YQLSettings
+  :: Ptr YQLSettings
      -> Ptr InputSmhiPmp
         -> IO (Ptr (Maybe OutputSmhiPmp))

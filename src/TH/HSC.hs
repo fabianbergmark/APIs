@@ -66,12 +66,12 @@ writeCppHeaderFile structs = do
                "#include \"void.hpp\""
       toDecl = \(tName, fields) ->
                 "typedef struct " ++ tName ++ " {\n" ++
-                tName ++ "() {};\n" ++
-                (if not (null fields)
-                 then tName ++ "(" ++ intercalate "," (map (\(t, n) -> t ++ " " ++ n) fields) ++ ") : " ++ intercalate ", " (map (\(_, n) -> n ++ "(" ++ n ++ ")") fields) ++ " {};\n"
-                 else "") ++
-               intercalate "\n" (map (\(t, n) -> t ++ " " ++ n ++ ";") fields)
-               ++ " } " ++ tName ++ ";"
+                intercalate "\n" (map (\(t, n) -> t ++ " " ++ n ++ ";") fields) ++
+--                tName ++ "() {};\n" ++
+--                (if not (null fields)
+--                 then tName ++ "(" ++ intercalate "," (map (\(t, n) -> t ++ " " ++ n) fields) ++ ") : " ++ intercalate ", " (map (\(_, n) -> n ++ "(" ++ n ++ ")") fields) ++ " {};\n"
+--                 else "") ++
+                " } " ++ tName ++ ";"
       decls = intercalate "\n\n" $ reverse $ map toDecl structs
       endif = "#endif"
       header = ifndef ++ "\n\n" ++ decls ++ "\n\n" ++ endif

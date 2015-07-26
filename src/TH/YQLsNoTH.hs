@@ -12,7 +12,7 @@ import qualified Data.TH.Object
 import Data.OpenDataTable
 import Data.OpenDataTable.LiftNoTH ()
 import qualified Data.OpenDataTable
-import qualified Data.Settings.YQL
+import Data.Settings.YQLNoTH
 import qualified Data.State.YQL
 import qualified Control.Monad.Trans.API
 
@@ -26,7 +26,7 @@ dropboxFiles ::
   forall s m a. (Control.Monad.IO.Class.MonadIO m,
                  Control.Monad.Catch.MonadThrow m,
                  Data.State.YQL.YQLState s) =>
-  Data.Settings.YQL.YQLSettings
+  YQLSettings
   -> InputDropboxFiles
      -> Control.Monad.Trans.API.APIT s m (Maybe OutputDropboxFiles)
 dropboxFiles
@@ -138,7 +138,7 @@ dropboxFilesPut ::
   forall s m a. (Control.Monad.IO.Class.MonadIO m,
                  Control.Monad.Catch.MonadThrow m,
                  Data.State.YQL.YQLState s) =>
-  Data.Settings.YQL.YQLSettings
+  YQLSettings
   -> InputDropboxFilesPut
      -> Control.Monad.Trans.API.APIT s m (Maybe OutputDropboxFilesPut)
 dropboxFilesPut
@@ -260,7 +260,7 @@ dropboxMetadata ::
   forall s m a. (Control.Monad.IO.Class.MonadIO m,
                  Control.Monad.Catch.MonadThrow m,
                  Data.State.YQL.YQLState s) =>
-  Data.Settings.YQL.YQLSettings
+  YQLSettings
   -> InputDropboxMetadata
      -> Control.Monad.Trans.API.APIT s m (Maybe OutputDropboxMetadata)
 dropboxMetadata
@@ -444,7 +444,7 @@ facebookGraphUserFeed ::
   forall s m a. (Control.Monad.IO.Class.MonadIO m,
                  Control.Monad.Catch.MonadThrow m,
                  Data.State.YQL.YQLState s) =>
-  Data.Settings.YQL.YQLSettings
+  YQLSettings
   -> InputFacebookGraphUserFeed
      -> Control.Monad.Trans.API.APIT s m (Maybe OutputFacebookGraphUserFeed)
 facebookGraphUserFeed
@@ -521,7 +521,7 @@ facebookGraphUserFeedPost ::
   forall s m a. (Control.Monad.IO.Class.MonadIO m,
                  Control.Monad.Catch.MonadThrow m,
                  Data.State.YQL.YQLState s) =>
-  Data.Settings.YQL.YQLSettings
+  YQLSettings
   -> InputFacebookGraphUserFeedPost
      -> Control.Monad.Trans.API.APIT s m (Maybe OutputFacebookGraphUserFeedPost)
 facebookGraphUserFeedPost
@@ -701,7 +701,7 @@ facebookGraphUserFriendlists ::
   forall s m a. (Control.Monad.IO.Class.MonadIO m,
                  Control.Monad.Catch.MonadThrow m,
                  Data.State.YQL.YQLState s) =>
-  Data.Settings.YQL.YQLSettings
+  YQLSettings
   -> InputFacebookGraphUserFriendlists
      -> Control.Monad.Trans.API.APIT s m (Maybe OutputFacebookGraphUserFriendlists)
 facebookGraphUserFriendlists
@@ -778,7 +778,7 @@ facebookGraphUserFriends ::
   forall s m a. (Control.Monad.IO.Class.MonadIO m,
                  Control.Monad.Catch.MonadThrow m,
                  Data.State.YQL.YQLState s) =>
-  Data.Settings.YQL.YQLSettings
+  YQLSettings
   -> InputFacebookGraphUserFriends
      -> Control.Monad.Trans.API.APIT s m (Maybe OutputFacebookGraphUserFriends)
 facebookGraphUserFriends
@@ -855,7 +855,7 @@ facebookGraphUserInbox ::
   forall s m a. (Control.Monad.IO.Class.MonadIO m,
                  Control.Monad.Catch.MonadThrow m,
                  Data.State.YQL.YQLState s) =>
-  Data.Settings.YQL.YQLSettings
+  YQLSettings
   -> InputFacebookGraphUserInbox
      -> Control.Monad.Trans.API.APIT s m (Maybe OutputFacebookGraphUserInbox)
 facebookGraphUserInbox
@@ -932,7 +932,7 @@ facebookGraphUserLinks ::
   forall s m a. (Control.Monad.IO.Class.MonadIO m,
                  Control.Monad.Catch.MonadThrow m,
                  Data.State.YQL.YQLState s) =>
-  Data.Settings.YQL.YQLSettings
+  YQLSettings
   -> InputFacebookGraphUserLinks
      -> Control.Monad.Trans.API.APIT s m (Maybe OutputFacebookGraphUserLinks)
 facebookGraphUserLinks
@@ -1009,7 +1009,7 @@ facebookGraphUserPhotos ::
   forall s m a. (Control.Monad.IO.Class.MonadIO m,
                  Control.Monad.Catch.MonadThrow m,
                  Data.State.YQL.YQLState s) =>
-  Data.Settings.YQL.YQLSettings
+  YQLSettings
   -> InputFacebookGraphUserPhotos
      -> Control.Monad.Trans.API.APIT s m (Maybe OutputFacebookGraphUserPhotos)
 facebookGraphUserPhotos
@@ -1086,7 +1086,7 @@ facebookGraphUserPhotosuploaded ::
   forall s m a. (Control.Monad.IO.Class.MonadIO m,
                  Control.Monad.Catch.MonadThrow m,
                  Data.State.YQL.YQLState s) =>
-  Data.Settings.YQL.YQLSettings
+  YQLSettings
   -> InputFacebookGraphUserPhotosuploaded
      -> Control.Monad.Trans.API.APIT s m (Maybe OutputFacebookGraphUserPhotosuploaded)
 facebookGraphUserPhotosuploaded
@@ -1165,7 +1165,7 @@ facebookGraphUserPokes ::
   forall s m a. (Control.Monad.IO.Class.MonadIO m,
                  Control.Monad.Catch.MonadThrow m,
                  Data.State.YQL.YQLState s) =>
-  Data.Settings.YQL.YQLSettings
+  YQLSettings
   -> InputFacebookGraphUserPokes
      -> Control.Monad.Trans.API.APIT s m (Maybe OutputFacebookGraphUserPokes)
 facebookGraphUserPokes
@@ -1242,7 +1242,7 @@ facebookGraphUserPosts ::
   forall s m a. (Control.Monad.IO.Class.MonadIO m,
                  Control.Monad.Catch.MonadThrow m,
                  Data.State.YQL.YQLState s) =>
-  Data.Settings.YQL.YQLSettings
+  YQLSettings
   -> InputFacebookGraphUserPosts
      -> Control.Monad.Trans.API.APIT s m (Maybe OutputFacebookGraphUserPosts)
 facebookGraphUserPosts
@@ -1319,7 +1319,7 @@ facebookGraphUserStatuses ::
   forall s m a. (Control.Monad.IO.Class.MonadIO m,
                  Control.Monad.Catch.MonadThrow m,
                  Data.State.YQL.YQLState s) =>
-  Data.Settings.YQL.YQLSettings
+  YQLSettings
   -> InputFacebookGraphUserStatuses
      -> Control.Monad.Trans.API.APIT s m (Maybe OutputFacebookGraphUserStatuses)
 facebookGraphUserStatuses
@@ -1396,7 +1396,7 @@ facebookGraphUserTagged ::
   forall s m a. (Control.Monad.IO.Class.MonadIO m,
                  Control.Monad.Catch.MonadThrow m,
                  Data.State.YQL.YQLState s) =>
-  Data.Settings.YQL.YQLSettings
+  YQLSettings
   -> InputFacebookGraphUserTagged
      -> Control.Monad.Trans.API.APIT s m (Maybe OutputFacebookGraphUserTagged)
 facebookGraphUserTagged
@@ -1473,7 +1473,7 @@ krisinformationFeed ::
   forall s m a. (Control.Monad.IO.Class.MonadIO m,
                  Control.Monad.Catch.MonadThrow m,
                  Data.State.YQL.YQLState s) =>
-  Data.Settings.YQL.YQLSettings
+  YQLSettings
   -> InputKrisinformationFeed
      -> Control.Monad.Trans.API.APIT s m (Maybe OutputKrisinformationFeed)
 krisinformationFeed
@@ -1520,7 +1520,7 @@ smhiPmp ::
   forall s m a. (Control.Monad.IO.Class.MonadIO m,
                  Control.Monad.Catch.MonadThrow m,
                  Data.State.YQL.YQLState s) =>
-  Data.Settings.YQL.YQLSettings
+  YQLSettings
   -> InputSmhiPmp
      -> Control.Monad.Trans.API.APIT s m (Maybe OutputSmhiPmp)
 smhiPmp

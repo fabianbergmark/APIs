@@ -62,7 +62,7 @@ generateYQLPipe base API {..} = do
       a = mkName "a"
       t = AppT (AppT ArrowT (ConT ''YQLSettings)) (AppT (AppT ArrowT inType) (AppT (AppT (AppT (ConT ''APIT) (VarT s)) (VarT m)) (AppT (ConT ''Maybe) outType)))
 
-#if 1
+#if 0
   let t' = ForallT
            [ PlainTV s, PlainTV m, PlainTV a ]
            [ AppT (ConT ''MonadIO) (VarT m)

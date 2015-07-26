@@ -80,6 +80,7 @@ writeHeaderFile funs = do
                "#define API_DEFINE_API\n"
       include = "#include <TH/FFIs_stub.h>\n" ++
                 "#include \"array.h\"\n" ++
+                "#include \"ghc.h\"\n" ++
                 "#include \"maybe.h\"\n" ++
                 "#include \"types.h\"\n" ++
                 "#include \"void.h\"\n" ++
@@ -111,6 +112,7 @@ writeCppHeaderFile funs = do
                "#define API_DEFINE_API\n"
       include = "#include <TH/FFIs_stub.h>\n" ++
                 "#include \"array.hpp\"\n" ++
+                "#include \"ghc.hpp\"\n" ++
                 "#include \"maybe.hpp\"\n" ++
                 "#include \"types.hpp\"\n" ++
                 "#include \"void.hpp\"\n" ++
