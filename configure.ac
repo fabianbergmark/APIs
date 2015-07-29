@@ -16,12 +16,14 @@ AC_DISABLE_STATIC
 
 LT_INIT
 
+AS_IF(["$build" == "$host"], [
 AX_JNI_INCLUDE_DIR
 
 for JNI_INCLUDE_DIR in $JNI_INCLUDE_DIRS
 do
         CPPFLAGS="$CPPFLAGS -I$JNI_INCLUDE_DIR"
 done
+], [])
 
 AC_ARG_VAR(HOST_GHC, The host GHC compiler to use)
 AC_SUBST([HOST_GHC], [${HOST_GHC:-ghc}])
@@ -47,6 +49,8 @@ AC_ARG_ENABLE(th,
 )
 
 AM_CONDITIONAL([TH], [test "x$TH" = "xyes"])
+
+AM_CONDITIONAL([PIC], [test "x$pic_mode" = "xyes"])
 
 if test "x$TH" = "xyes"; then
     AC_DEFINE([TH], [], ["Use Template Haskell"])

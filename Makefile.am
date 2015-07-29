@@ -9,11 +9,15 @@ endif
 
 if TARGET_GHC_PACKAGE_DB_SET
 TARGET_GHC_PACKAGE_DB_FLAG=-package-db=$(TARGET_GHC_PACKAGE_DB)
+TARGET_GHC_PKG_USER_PKG_DB_FLAG=--user-package-db=$(TARGET_GHC_PACKAGE_DB)
 else
 TARGET_GHC_PACKAGE_DB_FLAG=
+TARGET_GHC_PKG_USER_PKG_DB_FLAG=
 endif
 
 SUFFIXES = .hs
+
+TARGET_GHC_VERSION = $(shell $(TARGET_GHC) --version | sed "s/[[a-zA-Z ,]*\([0-9.]*\)[a-zA-Z ]]*/\1/")
 
 TARGET_GHC_LIBDIR = $(shell $(TARGET_GHC) --print-libdir)
 
@@ -25,17 +29,27 @@ endif
 
 GHC_PACKAGES = $(foreach l, $(GHC_LIBS),-package $l)
 
-GHC_LIB_LINKS = $(foreach a, $(foreach l, $(GHC_LIBS),$(shell $(TARGET_GHC_PKG) field $l hs-libraries --user-package-db=$(TARGET_GHC_PACKAGE_DB) --expand-pkgroot --expand-env-vars | sed -r 's/^.{14}/-l/')), $(a)-ghc7.10.1)
+GHC_LIB_LINKS = $(foreach a, $(foreach l, $(GHC_LIBS),$(shell $(TARGET_GHC_PKG) field $l hs-libraries $(TARGET_GHC_PKG_USER_PKG_DB_FLAG) --expand-pkgroot --expand-env-vars | sed -r 's/^.{13}//' | sed -r 's/ / -l/g')), $(a))
 
-GHC_LIB_RPATHS = $(foreach l, $(GHC_LIBS), $(shell $(TARGET_GHC_PKG) field $l library-dirs --user-package-db=$(TARGET_GHC_PACKAGE_DB) --expand-pkgroot --expand-env-vars | sed -r 's/^.{14}/-rpath /'))
+GHC_LIB_EXTRA_LIBS = $(foreach l, $(GHC_LIBS),$(shell $(TARGET_GHC_PKG) field $l extra-libraries $(TARGET_GHC_PKG_USER_PKG_DB_FLAG) --expand-pkgroot --expand-env-vars | sed -r 's/^.{16}//' | sed -r 's/ / -l/g'))
+
+GHC_LIB_EXTRA_LIBS_GROUP = $(shell echo $(GHC_LIB_EXTRA_LIBS) | sed -r 's/ /,/g')
+
+GHC_LIB_RPATHS = $(foreach l, $(GHC_LIBS), $(shell $(TARGET_GHC_PKG) field $l library-dirs $(TARGET_GHC_PKG_USER_PKG_DB_FLAG) --expand-pkgroot --expand-env-vars | sed -r 's/^.{14}/-rpath /'))
 
 GHC_LIB_RPATHS_GROUP = $(shell echo $(GHC_LIB_RPATHS) | sed -r 's/ /,/g')
 
 GHC_LIB_LINKS_GROUP = $(shell echo $(GHC_LIB_LINKS) | sed -r 's/ /,/g')
 
-GHC_LIB_INCLUDES = $(foreach l, $(GHC_LIBS), $(shell $(TARGET_GHC_PKG) field $l library-dirs --user-package-db=$(TARGET_GHC_PACKAGE_DB) --expand-pkgroot --expand-env-vars | sed -r 's/^.{14}/-L/'))
+GHC_LIB_INCLUDES = $(foreach l, $(GHC_LIBS), $(shell $(TARGET_GHC_PKG) field $l library-dirs $(TARGET_GHC_PKG_USER_PKG_DB_FLAG) --expand-pkgroot --expand-env-vars | sed -r 's/^.{14}/-L/'))
 
-TARGET_GHC_FLAGS = $(TARGET_GHC_PACKAGE_DB_FLAG) -ibuild -isrc -fforce-recomp -dynamic -fPIC -DPIC -odir build -hidir build -stubdir ffi/c/lib -hide-all-packages $(GHC_PACKAGES)
+if PIC
+TARGET_GHC_PIC_FLAGS = -dynamic -fPIC -DPIC
+else
+TARGET_GHC_PIC_FLAGS =
+endif
+
+TARGET_GHC_FLAGS = $(TARGET_GHC_PACKAGE_DB_FLAG) -ibuild -isrc -fforce-recomp $(TARGET_GHC_PIC_FLAGS) -odir build -hidir build -stubdir ffi/c/lib -hide-all-packages $(GHC_PACKAGES)
 
 HOST_GHC_FLAGS = $(HOST_GHC_PACKAGE_DB_FLAG) -ibuild -isrc -fforce-recomp -odir build -hidir build -stubdir ffi/c/lib -hide-all-packages $(GHC_PACKAGES)
 
@@ -43,7 +57,7 @@ HOST_GHC_FLAGS = $(HOST_GHC_PACKAGE_DB_FLAG) -ibuild -isrc -fforce-recomp -odir 
 	$(TARGET_GHC) $(TARGET_GHC_FLAGS) -c $<
 	$(LIBTOOL) --tag=$(TARGET_GHC) --mode=compile $(TARGET_GHC) $(TARGET_GHC_FLAGS) -c $< -o $@
 
-GHC_LDFLAGS = $(GHC_LIB_INCLUDES) -fno-stack-protector -Wl,-Bsymbolic,--reduce-memory-overheads,--hash-size=31,--start-group,$(GHC_LIB_RPATHS_GROUP),$(GHC_LIB_LINKS_GROUP),-ldl,-lgmp,-lm,-lz,--end-group
+GHC_LDFLAGS = $(GHC_LIB_INCLUDES) -fno-stack-protector -fPIC -Wl,-Bsymbolic,--reduce-memory-overheads,--hash-size=31,--start-group,$(GHC_LIB_RPATHS_GROUP),$(GHC_LIB_LINKS_GROUP),$(GHC_LIB_EXTRA_LIBS_GROUP),--end-group
 
 noinst_LTLIBRARIES = libAPIs.la
 if TH
